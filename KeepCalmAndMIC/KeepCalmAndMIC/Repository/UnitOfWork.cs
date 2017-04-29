@@ -18,6 +18,7 @@ namespace KeepCalmAndMIC.Repository
 		private GameRepository _gameRepository;
 		private WeekRepository _weekRepository;
         private InternshipRepository _internshipRepository;
+		private UserRepository _userRepository;
 
         private UnitOfWork(ApplicationDbContext context)
 		{
@@ -35,6 +36,7 @@ namespace KeepCalmAndMIC.Repository
 		public GameRepository Games => _gameRepository ?? (_gameRepository = new GameRepository(_context));
 		public WeekRepository Weeks => _weekRepository ?? (_weekRepository = new WeekRepository(_context));
         public InternshipRepository Internship => _internshipRepository ?? (_internshipRepository = new InternshipRepository(_context));
+		public UserRepository Users => _userRepository ?? (_userRepository = new UserRepository(_context));
 
 
         public async Task SaveChangesAsync()

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -13,16 +14,15 @@ namespace KeepCalmAndMIC.Controllers
             return View();
         }
 
-		public ActionResult Games()
+		public async Task<ActionResult> Games()
 		{
-			var name = User.Identity.Name;
-			System.Diagnostics.Debug.WriteLine(name);
-
+			var user = UnitOfWork.Users.GetByName(User.Identity.Name);
+			var userGames = await UnitOfWork.Games.SearchFor(g => g.PlayerId.Equals(user.Id));
 
 			return View();
 		}
 
-        public ActionResult About()
+		public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
 
