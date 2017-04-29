@@ -9,9 +9,11 @@ namespace KeepCalmAndMIC.Controllers
 {
     public class PlayController : Controller
     {
+        public DayOfWeek SelectedDay { get; set; }
         // GET: Play
         public ActionResult Index()
         {
+            SelectedDay = DayOfWeek.Sunday;
             List<WeekViewModel> weeks = new List<WeekViewModel>();
             for(int i = 1; i <= 15; i++)
             {
@@ -22,6 +24,15 @@ namespace KeepCalmAndMIC.Controllers
                 });
             }
             return View();
+        }
+        [HttpPut]
+        public void SelectDayOfWeek(DayOfWeek day)
+        {
+            if(day == DayOfWeek.Saturday)
+            {
+                day = DayOfWeek.Sunday;
+            }
+            SelectedDay = day;
         }
     }
 }

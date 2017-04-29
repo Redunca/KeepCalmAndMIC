@@ -34,3 +34,7 @@ stats{
     padding-left : 30px;
     background-color : deepskyblue;
 }
+dayInformations{
+    width: 100%;
+    background-color: lightblue;
+}

@@ -23,7 +23,7 @@ namespace KeepCalmAndMIC.Models
 		public DateTime CreatedOn { get; set; }
 		public DateTime ModifiedOn { get; set; }
 
-		public Stats GetWeekStats()
+        public Stats GetWeekStats()
         {
             Stats stats = new Stats();
 
@@ -38,4 +38,5 @@ namespace KeepCalmAndMIC.Models
             return stats;
         }
     }
+    
 }
