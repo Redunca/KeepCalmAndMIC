@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
 namespace KeepCalmAndMIC.Models
 {
-    public class Stats
+    public class Stats : IBaseModel
     {
         public Stats()
         {
@@ -27,5 +28,10 @@ namespace KeepCalmAndMIC.Models
         public int TechnicalSkills { get; set; }
         public int Ambiance { get; set; }
         public int MutualAid { get; set; }
-    }
+		[Key]
+		public int Id { get; set; }
+		public DateTime CreatedOn { get; set; }
+		public DateTime ModifiedOn { get; set; }
+
+	}
 }
