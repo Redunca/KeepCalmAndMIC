@@ -1,0 +1,71 @@
+﻿<div class="col-md-6">
+    <div class="row">
+        <div class="col-md-2 stats ">
+            Prod.
+        </div>
+        <div class="col-md-2 stats ">
+            Learn.
+        </div>
+        <div class="col-md-2 stats">
+            Ambi.
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2 stats ">
+            <h3>42</h3>
+        </div>
+        <div class="col-md-2 stats ">
+            <h3>42</h3>
+        </div>
+        <div class="col-md-2 stats">
+            <h3>42</h3>
+        </div>
+    </div>
+    <div class="row">
+        @if ((DayOfWeek)Model.SelectedDay == null || (DayOfWeek)Model.SelectedDay == DayOfWeek.Sunday)
+        {
+            switch ((DayOfWeek)Model.SelectedDay)
+            {
+                case DayOfWeek.Monday:
+                    <button><strong>Monday</strong></button>
+                    <button>Tuesday</button>
+                    <button>Wednesday</button>
+                    <button>Thursday</button>
+                    <button>Friday</button>
+                    break;
+                case DayOfWeek.Tuesday:
+                    <button>Monday</button>
+                    <button><strong>Tuesday</strong></button>
+                    <button>Wednesday</button>
+                    <button>Thursday</button>
+                    <button>Friday</button>
+                    break;
+                case DayOfWeek.Wednesday:
+                    <button>Monday</button>
+                    <button>Tuesday</button>
+                    <button><strong>Wednesday</strong></button>
+                    <button>Thursday</button>
+                    <button>Friday</button>
+                    break;
+                case DayOfWeek.Thursday:
+                    <button>Monday</button>
+                    <button>Tuesday</button>
+                    <button>Wednesday</button>
+                    <button><strong>Thursday</strong></button>
+                    <button>Friday</button>
+                    break;
+                case DayOfWeek.Friday:
+                    <button>Monday</button>
+                    <button>Tuesday</button>
+                    <button>Wednesday</button>
+                    <button>Thursday</button>
+                    <button><strong>Friday</strong></button>
+                    break;
+            }
+        }
+        else
+        {
+            <h2>efzkrjgtrnhi</h2>
+        }
+    </div>
+</div>

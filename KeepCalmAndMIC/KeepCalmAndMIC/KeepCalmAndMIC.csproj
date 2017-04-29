@@ -221,8 +221,10 @@
     <Compile Include="BusinessLayer\GameManagement.cs" />
     <Compile Include="BusinessLayer\WeekManagement.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PlayController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -239,11 +241,15 @@
     <Compile Include="Models\IBaseModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\IIdentifiable.cs" />
+    <Compile Include="Models\ViewModels\CardsViewModel.cs" />
     <Compile Include="Models\ViewModels\ManageViewModels.cs" />
     <Compile Include="Models\Game.cs" />
     <Compile Include="Models\Internship.cs" />
     <Compile Include="Models\Stats.cs" />
+    <Compile Include="Models\ViewModels\ProgressViewModel.cs" />
+    <Compile Include="Models\ViewModels\TimeViewModel.cs" />
     <Compile Include="Models\Week.cs" />
+    <Compile Include="Models\WeekViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\BaseModelRepository.cs" />
     <Compile Include="Repository\CardRepository.cs" />
@@ -264,6 +270,11 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Ressources\BG.jpg" />
+    <Content Include="Ressources\BlocCentral.jpg" />
+    <Content Include="Ressources\BlocLateral.jpg" />
+    <Content Include="Ressources\BlocSuperieurBase.jpg" />
+    <Content Include="Ressources\BlocTitre.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -277,6 +288,7 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <None Include="Properties\PublishProfiles\KeepCalmAndMIC - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
@@ -328,6 +340,10 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Play\Index.cshtml" />
+    <Content Include="Views\Shared\_ProgressView.cshtml" />
+    <Content Include="Views\Shared\_TimeView.cshtml" />
+    <Content Include="Views\Shared\_CardsView.cshtml" />
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />
   </ItemGroup>
