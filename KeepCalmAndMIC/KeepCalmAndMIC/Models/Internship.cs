@@ -6,9 +6,9 @@ using KeepCalmAndMIC.Models;
 
 namespace KeepCalmAndMIC.Models
 {
-    public class Stage
+    public class Internship
     {
-        public Stage (int numberOfWeek)
+        public Internship (int numberOfWeek)
         {
             for(int i = 1; i <= numberOfWeek; i ++)
             {
