@@ -236,10 +236,14 @@
     <Compile Include="Models\IBaseModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\IIdentifiable.cs" />
+    <Compile Include="Models\ViewModels\CardsViewModel.cs" />
+    <Compile Include="Models\ViewModels\LogViewModel.cs" />
     <Compile Include="Models\ViewModels\ManageViewModels.cs" />
     <Compile Include="Models\Game.cs" />
     <Compile Include="Models\Internship.cs" />
     <Compile Include="Models\Stats.cs" />
+    <Compile Include="Models\ViewModels\ProgressViewModel.cs" />
+    <Compile Include="Models\ViewModels\TimeViewModel.cs" />
     <Compile Include="Models\Week.cs" />
     <Compile Include="Models\WeekViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -271,6 +275,7 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <None Include="Properties\PublishProfiles\KeepCalmAndMIC - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />

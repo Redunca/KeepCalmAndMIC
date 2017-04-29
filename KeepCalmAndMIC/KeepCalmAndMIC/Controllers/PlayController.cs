@@ -1,4 +1,5 @@
 ﻿using KeepCalmAndMIC.Models;
+using KeepCalmAndMIC.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,11 +10,9 @@ namespace KeepCalmAndMIC.Controllers
 {
     public class PlayController : Controller
     {
-        public DayOfWeek SelectedDay { get; set; }
         // GET: Play
         public ActionResult Index()
         {
-            SelectedDay = DayOfWeek.Sunday;
             List<WeekViewModel> weeks = new List<WeekViewModel>();
             for(int i = 1; i <= 15; i++)
             {
@@ -23,16 +22,31 @@ namespace KeepCalmAndMIC.Controllers
                     IsPassed = (i < 6)
                 });
             }
+            ViewBag.ProgressViewModel = new ProgressViewModel();
+            ViewBag.TimeViewModel = new TimeViewModel();
+            ViewBag.CardsViewModel = new CardsViewModel();
+            ViewBag.LogViewModel = new LogViewModel();
+            ViewBag.TimeViewModel.SelectedDay = DayOfWeek.Sunday;
             return View();
         }
-        [HttpPut]
-        public void SelectDayOfWeek(DayOfWeek day)
+        public void SelectDayOfWeek(DayOfWeek? day)
         {
-            if(day == DayOfWeek.Saturday)
+            if(ViewBag.TimeViewModel == null)
             {
-                day = DayOfWeek.Sunday;
+                ViewBag.TimeViewModel = new TimeViewModel();
             }
-            SelectedDay = day;
+            if (day.HasValue)
+            {
+                ViewBag.TimeViewModel.SelectedDay = day.Value;
+                if(day.Value == DayOfWeek.Saturday)
+                {
+                    ViewBag.TimeViewModel.SelectedDay = DayOfWeek.Sunday;
+                }
+            }
+            else
+            {
+                ViewBag.TimeViewModel.SelectedDay = DayOfWeek.Sunday;
+            }
         }
     }
 }

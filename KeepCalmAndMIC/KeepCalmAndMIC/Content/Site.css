@@ -23,11 +23,15 @@ textarea {
     max-width: 280px;
 }
 
-weekActive{
+weekActive td{
     background-color: tomato;
+    width: 68px;
+    padding : 34px;
 }
-weekInactive{
+weekInactive td{
     background-color: green;
+    width: 68px;
+    padding: 34px;
 }
 stats{
     padding-right: 30px;

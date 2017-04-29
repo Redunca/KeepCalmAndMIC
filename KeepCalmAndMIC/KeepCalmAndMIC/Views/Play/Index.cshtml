@@ -1,32 +1,17 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Keep Calm And MIC !";
 }
+    <h1>@ViewBag.Title</h1>
 
-
-<div class="col-md-12">
-    @{
-        Html.Partial("_ProgressView", (object)ViewBag.ProgressViewModel);
-    }
-</div>
+    @Html.Partial("_ProgressView", (KeepCalmAndMIC.Models.ViewModels.ProgressViewModel)ViewBag.ProgressViewModel)
+    
 
 <div class="row">
-    <div class="col-md-4">
-        @{
-            Html.Partial("_TimeView", (object)ViewBag.TimeViewModel);
-        }
-    </div>
-    <div class="col-md-4">
-        @{
-            Html.Partial("_CardsView", (object)ViewBag.CardsViewModel);
-        }
+    @Html.Partial("_TimeView", (KeepCalmAndMIC.Models.ViewModels.TimeViewModel)ViewBag.TimeViewModel)
 
-    </div>
-    <div class="col-md-4">
-        @{
-            Html.Partial("_LogView", (object)ViewBag.LogViewModel);
-        }
+    @Html.Partial("_CardsView", (KeepCalmAndMIC.Models.ViewModels.CardsViewModel)ViewBag.CardsViewModel)
 
-    </div>
+    @Html.Partial("_LogView", (KeepCalmAndMIC.Models.ViewModels.LogViewModel)ViewBag.LogViewModel)
 </div>
 

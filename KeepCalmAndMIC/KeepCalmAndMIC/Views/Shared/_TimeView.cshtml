@@ -1,24 +1,21 @@
-﻿<div class="row">
-    <di class="col-md-4">
-        <div class="row">
-            <div class="stats">
-                Production
-            </div>
-            <div class="stats">
-                Learnings
-            </div>
-            <div class="stats">
-                Ambiance
-            </div>
+﻿<div class="col-md-4">
+    <div class="row">
+        <div class="col-md-2 stats ">
+            Prod.
+        </div>
+        <div class="col-md-2 stats ">
+            Learn.
+        </div>
+        <div class="col-md-2 stats">
+            Ambi.
+        </div>
     </div>
-</div>
-<div class="row">
-    <div class="col-md-4">
-        @if ((DayOfWeek)ViewBag.SelectedDay == DayOfWeek.Sunday)
+    <div class="row">
+        @if ((DayOfWeek)Model.SelectedDay == null || (DayOfWeek)Model.SelectedDay == DayOfWeek.Sunday)
         {
-            <table>
+            <table class="table-responsive">
                 <tr>
-                    <td>@Html.Action("SelectDayOfWeek","Play",DayOfWeek.Monday)</td>
+                    <td>@Html.Action("SelectDayOfWeek", "Play", DayOfWeek.Monday)</td>
                 </tr>
                 <tr>
                     <td>@Html.Action("SelectDayOfWeek", "Play", DayOfWeek.Tuesday)</td>
@@ -36,9 +33,7 @@
         }
         else
         {
-            <div class="dayInformations" dropzone="">
-
-            </div>
+            <h2>efzkrjgtrnhi</h2>
         }
     </div>
 </div>

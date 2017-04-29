@@ -1,1 +1,35 @@
-﻿
+﻿<div class="col-md-4">
+    @foreach (KeepCalmAndMIC.Models.Card c in Model.Cards)
+    {
+        <button>
+            <h4>@c.Name</h4>
+            <p>@c.Description</p>
+            <h5>Effects :</h5>
+            <table>
+                <tr>
+                    <td>on Production :</td>
+                    <td>@c.EffectOnProduction</td>
+                </tr>
+                <tr>
+                    <td>on Mutual Aid :</td>
+                    <td>@c.EffectOnMutualAid</td>
+                </tr>
+                <tr>
+                    <td>on Skills :</td>
+                    <td>@c.EffectOnTechnicalSkills</td>
+                </tr>
+                <tr>
+                    <td>on Ambiance :</td>
+                    <td>@c.EffectOnAmbiance</td>
+                </tr>
+            </table>
+            <h5>Costs :</h5>
+            <table>
+                <tr>
+                    <td>Time : </td>
+                    <td>@c.TimeCostInHour</td>
+                </tr>
+            </table>
+        </button>
+    }
+</div>
