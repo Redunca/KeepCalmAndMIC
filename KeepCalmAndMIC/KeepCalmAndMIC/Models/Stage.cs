@@ -42,5 +42,22 @@ namespace KeepCalmAndMIC.Models
         {
             WeeksOfTheStage.ElementAt(weekNumber).DaysOfTheWeek.ElementAt(dayNumberOfWeek).SelectedCards.Add(card);
         }
+
+        public Stats GetStageStats()
+        {
+            Stats stats = new Stats();
+
+            foreach (Week week in WeeksOfTheStage)
+            {
+                Stats tmpStats = week.GetWeekStats();
+
+                stats.Ambiance += tmpStats.Ambiance;
+                stats.MutualAid += tmpStats.MutualAid;
+                stats.Productivity += tmpStats.Productivity;
+                stats.TechnicalSkills += tmpStats.TechnicalSkills;
+            }
+
+            return stats;
+        }
     }
 }
