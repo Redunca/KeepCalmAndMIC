@@ -9,5 +9,6 @@ namespace KeepCalmAndMIC.Repository
     public class WeekRepository : BaseModelRepository<Week>
     {
         public WeekRepository(ApplicationDbContext context) : base(context) { }
+
     }
 }

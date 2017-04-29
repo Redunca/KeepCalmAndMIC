@@ -6,26 +6,29 @@ namespace KeepCalmAndMIC.Models
 {
 	public class Card : IBaseModel
     {
+        public TypeCard CardType { get; set; }
+
 		[Key]
 		public int Id { get; set; }
 
 		public DateTime CreatedOn { get; set; }
 
 		public DateTime ModifiedOn { get; set; }
-
-		public TypeCard CardType { get; set; }
+        
         public string Name { get; set; }
         public string Description { get; set; }
-        public int EffectOnProduction { get; set; }
-        public int EffectOnMutualAid { get; set; }
-        public int EffectOnTechnicalSkills { get; set; }
-        public int EffectOnAmbiance { get; set; }
+        public double EffectOnProduction { get; set; }
+        public double EffectOnMutualAid { get; set; }
+        public double EffectOnTechnicalSkills { get; set; }
+        public double EffectOnAmbiance { get; set; }
+        public double EffectOnProductivity { get; set; }
         public int TimeCostInHour { get; set; }
-
+        												  
+        public int EnergyCost { get; set; }
+        
 		public int? DayActionId { get; set; }
 		[ForeignKey("DayActionId")]
 		public Day DayAction { get; set; }
-
 		public int? DayEventId { get; set; }
 		[ForeignKey("DayEventId")]
 		public Day DayEvent { get; set; }
@@ -34,7 +37,8 @@ namespace KeepCalmAndMIC.Models
 		[ForeignKey("DeckId")]
 		public Deck Deck { get; set; }
 
-		public Card(TypeCard typeCard, string name, string description, int effectOnProduction, int effectOnMutualAid, int effectOnTechnicalSkills, int effectOnAmbiance, int timeCost)
+		public Card(TypeCard typeCard, string name, string description, double effectOnProductivity, double effectOnMutualAid,
+			double effectOnTechnicalSkills, double effectOnAmbiance, int timeCost, int energyCost, double effectOnProduction = 0)
 		{
 			CardType = typeCard;
 			Name = name;
@@ -44,6 +48,8 @@ namespace KeepCalmAndMIC.Models
 			EffectOnTechnicalSkills = effectOnTechnicalSkills;
 			EffectOnAmbiance = effectOnAmbiance;
 			TimeCostInHour = timeCost;
+			EnergyCost = energyCost;
+			EffectOnProductivity = effectOnProductivity;
 		}
 
 	}
@@ -53,4 +59,5 @@ namespace KeepCalmAndMIC.Models
         Event,
         Action
     }
+    
 }

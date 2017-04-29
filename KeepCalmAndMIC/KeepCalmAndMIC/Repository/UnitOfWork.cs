@@ -13,8 +13,13 @@ namespace KeepCalmAndMIC.Repository
 	{
 		private readonly ApplicationDbContext _context;
 		private CardRepository _cardRepository;
+		private DayRepository _dayRepository;
+		private DeckRepository _deckRepository;
+		private GameRepository _gameRepository;
+		private WeekRepository _weekRepository;
+        private InternshipRepository _internshipRepository;
 
-		private UnitOfWork(ApplicationDbContext context)
+        private UnitOfWork(ApplicationDbContext context)
 		{
 			_context = context;
 		}
@@ -25,8 +30,14 @@ namespace KeepCalmAndMIC.Repository
 		}
 
 		public CardRepository Cards => _cardRepository ?? (_cardRepository = new CardRepository(_context));
+		public DayRepository Days => _dayRepository ?? (_dayRepository = new DayRepository(_context));
+		public DeckRepository Decks => _deckRepository ?? (_deckRepository = new DeckRepository(_context));
+		public GameRepository Games => _gameRepository ?? (_gameRepository = new GameRepository(_context));
+		public WeekRepository Weeks => _weekRepository ?? (_weekRepository = new WeekRepository(_context));
+        public InternshipRepository Internship => _internshipRepository ?? (_internshipRepository = new InternshipRepository(_context));
 
-		public async Task SaveChangesAsync()
+
+        public async Task SaveChangesAsync()
 		{
 			await _context.SaveChangesAsync();
 		}

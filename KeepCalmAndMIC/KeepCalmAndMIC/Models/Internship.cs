@@ -15,7 +15,7 @@ namespace KeepCalmAndMIC.Models
 		public DateTime CreatedOn { get; set; }
 		public DateTime ModifiedOn { get; set; }
 
-        public List<Week> WeeksOfTheIntership { get; set; } = new List<Week>();
+        public List<Week> WeeksOfTheInternship { get; set; } = new List<Week>();
         public int CurrentWeek { get; set; }
         public int CurrentDayOfTheWeek { get; set; }
 
@@ -27,7 +27,7 @@ namespace KeepCalmAndMIC.Models
 		{
 			for (int i = 1; i <= numberOfWeek; i++)
 			{
-				WeeksOfTheIntership.Add(new Week());
+				WeeksOfTheInternship.Add(new Week());
 			}
 
 			CurrentWeek = 0;
@@ -89,6 +89,5 @@ namespace KeepCalmAndMIC.Models
 
             return GetStageStats();
         }
-    
 	}
 }

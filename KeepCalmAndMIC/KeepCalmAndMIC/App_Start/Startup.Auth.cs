@@ -22,6 +22,11 @@ namespace KeepCalmAndMIC
             app.CreatePerOwinContext<ApplicationSignInManager>(ApplicationSignInManager.Create);
 			app.CreatePerOwinContext<UnitOfWork>(UnitOfWork.Create);
 			app.CreatePerOwinContext<CardManagement>(CardManagement.Create);
+			app.CreatePerOwinContext<DayManagement>(DayManagement.Create);
+			app.CreatePerOwinContext<DeckManagement>(DeckManagement.Create);
+			app.CreatePerOwinContext<GameManagement>(GameManagement.Create);
+			app.CreatePerOwinContext<WeekManagement>(WeekManagement.Create);
+            app.CreatePerOwinContext<InternshipManagement>(InternshipManagement.Create);
 
 			// Enable the application to use a cookie to store information for the signed in user
 			// and to use a cookie to temporarily store information about a user logging in with a third party login provider
