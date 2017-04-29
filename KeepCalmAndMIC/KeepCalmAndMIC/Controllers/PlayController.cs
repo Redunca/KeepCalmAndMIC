@@ -28,7 +28,7 @@ namespace KeepCalmAndMIC.Controllers
             ViewBag.TimeViewModel.SelectedDay = DayOfWeek.Sunday;
             return View();
         }
-        public void SelectDayOfWeek(DayOfWeek? day)
+        public ActionResult SelectDayOfWeek(DayOfWeek? day)
         {
             if(ViewBag.TimeViewModel == null)
             {
@@ -46,6 +46,7 @@ namespace KeepCalmAndMIC.Controllers
             {
                 ViewBag.TimeViewModel.SelectedDay = DayOfWeek.Sunday;
             }
+            return View();
         }
     }
 }
