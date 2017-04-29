@@ -9,8 +9,8 @@ namespace KeepCalmAndMIC.Models
     {
 		[Key]
 		public int Id { get; set; }
-		public DateTime CreatedOn { get; set; }
-		public DateTime ModifiedOn { get; set; }
+		public DateTime? CreatedOn { get; set; }
+		public DateTime? ModifiedOn { get; set; }
 
 		public List<Card> SelectedCards { get; set; } = new List<Card>();
 		public List<Card> LivingEvents { get; set; } = new List<Card>();

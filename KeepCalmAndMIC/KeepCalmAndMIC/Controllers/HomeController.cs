@@ -16,7 +16,7 @@ namespace KeepCalmAndMIC.Controllers
 		public ActionResult Games()
 		{
 			var name = User.Identity.Name;
-			var games = await UnitOfWork
+			System.Diagnostics.Debug.WriteLine(name);
 
 
 			return View();
