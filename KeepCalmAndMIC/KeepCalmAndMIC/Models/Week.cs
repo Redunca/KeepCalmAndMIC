@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
 namespace KeepCalmAndMIC.Models
 {
-    public class Week
+    public class Week : IBaseModel
     {
         public Week()
         {
@@ -17,8 +18,12 @@ namespace KeepCalmAndMIC.Models
         }
 
         public List<Day> DaysOfTheWeek { get; set; } = new List<Day>();
+		[Key]
+		public int Id { get; set; }
+		public DateTime CreatedOn { get; set; }
+		public DateTime ModifiedOn { get; set; }
 
-        public Stats GetWeekStats()
+		public Stats GetWeekStats()
         {
             Stats stats = new Stats();
 
