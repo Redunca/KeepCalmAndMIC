@@ -205,7 +205,10 @@
     <Compile Include="Models\Stats.cs" />
     <Compile Include="Models\Week.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\BaseModelRepository.cs" />
     <Compile Include="Repository\CardRepository.cs" />
+    <Compile Include="Repository\IRepository.cs" />
+    <Compile Include="Repository\UnitOfWork.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
