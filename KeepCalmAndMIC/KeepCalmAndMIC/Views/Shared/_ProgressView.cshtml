@@ -1,24 +1,24 @@
 ﻿
-<table class="table-responsive" width="1024">
-    <tr>
-        @{
-            foreach (KeepCalmAndMIC.Models.WeekViewModel w in Model.Weeks)
+<div class="row">
+    @{
+        foreach (KeepCalmAndMIC.Models.WeekViewModel w in Model.Weeks)
+        {
+            if (w.IsPassed)
             {
-                if (w.IsPassed)
-                {
-                    <tr class="weekActive" style:width="68">
-                        @Html.Label(w.WeekNumber.ToString())
-                    </tr>
-                }
-                else
-                {
-                    <tr class="weekInactive" style:width="68">
-                        @Html.Label(w.WeekNumber.ToString())
-                    </tr>
-                }
+                <div class="col-sm-1" style="background-color:red">
+                    @Html.Label(w.WeekNumber.ToString())
+                </div>
+            }
+            else
+            {
+                <div class="col-sm-1" style="background-color:green">
+                    @Html.Label(w.WeekNumber.ToString())
+                </div>
             }
         }
-    </tr>
-</table>
+    }
+</div>
+       
+
 
    
