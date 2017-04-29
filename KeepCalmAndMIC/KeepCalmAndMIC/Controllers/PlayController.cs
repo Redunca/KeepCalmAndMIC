@@ -25,7 +25,6 @@ namespace KeepCalmAndMIC.Controllers
             ViewBag.ProgressViewModel = new ProgressViewModel();
             ViewBag.TimeViewModel = new TimeViewModel();
             ViewBag.CardsViewModel = new CardsViewModel();
-            ViewBag.LogViewModel = new LogViewModel();
             ViewBag.TimeViewModel.SelectedDay = DayOfWeek.Sunday;
             return View();
         }

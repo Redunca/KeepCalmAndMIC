@@ -237,7 +237,6 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\IIdentifiable.cs" />
     <Compile Include="Models\ViewModels\CardsViewModel.cs" />
-    <Compile Include="Models\ViewModels\LogViewModel.cs" />
     <Compile Include="Models\ViewModels\ManageViewModels.cs" />
     <Compile Include="Models\Game.cs" />
     <Compile Include="Models\Internship.cs" />
@@ -262,6 +261,11 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Ressources\BG.jpg" />
+    <Content Include="Ressources\BlocCentral.jpg" />
+    <Content Include="Ressources\BlocLateral.jpg" />
+    <Content Include="Ressources\BlocSuperieurBase.jpg" />
+    <Content Include="Ressources\BlocTitre.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -333,7 +337,6 @@
     <Content Include="Views\Shared\_ProgressView.cshtml" />
     <Content Include="Views\Shared\_TimeView.cshtml" />
     <Content Include="Views\Shared\_CardsView.cshtml" />
-    <Content Include="Views\Shared\_LogView.cshtml" />
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />
   </ItemGroup>
