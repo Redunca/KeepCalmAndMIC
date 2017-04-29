@@ -361,6 +361,7 @@
     <Content Include="Views\Shared\_CardsView.cshtml" />
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />
+    <Content Include="Views\Home\Games.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,43 @@
+﻿@model Dictionary<string, List<int>>
+
+@{
+	ViewBag.Title = "Games";
+}
+
+<h2>Games</h2>
+
+<div class="col-md-6">
+	<div>
+		<input type="button" class="btn btn-default" value="Continuer la partie" onclick="" />
+		<input type="button" class="btn btn-default" value="Nouvelle partie" onclick="location.href='@Url.Action("Index", "Play")'" />
+	</div>
+	<div>
+		@{
+			List<int> topScores;
+			if (Model.TryGetValue("topGames", out topScores))
+			{
+				<ul>
+					@foreach (int score in topScores)
+					{
+						<li>@score</li>
+					}
+				</ul>
+			}
+		}
+	</div>
+</div>
+
+<div class="col-md-6">
+	@{
+		List<int> userScores;
+		if (Model.TryGetValue("userGames", out userScores))
+		{
+			<ul>
+				@foreach (int score in userScores)
+				{
+					<li>@score</li>
+				}
+			</ul>
+		}
+	}
+</div>

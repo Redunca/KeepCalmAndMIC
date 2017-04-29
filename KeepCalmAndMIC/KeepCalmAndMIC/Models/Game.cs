@@ -26,6 +26,8 @@ namespace KeepCalmAndMIC.Models
 		
 		public bool InProgress { get; set; }
 
+		public int FinalScore { get; set; }
+
 		public Game()
 		{
 			Internship = new Internship(15);
