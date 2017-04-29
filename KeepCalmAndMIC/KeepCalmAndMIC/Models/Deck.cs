@@ -56,6 +56,7 @@ namespace KeepCalmAndMIC.Models
 
         public void FeedDeckAction(int numberOfCards)
         {
+            //CardList = await Repository.CardRepository.
             //Repository Card :> GetRandomCards(TypeCard typeCard, int numberOfCards) => Type action
         }
 
