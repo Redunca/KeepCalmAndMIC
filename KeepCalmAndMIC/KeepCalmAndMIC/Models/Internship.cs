@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using KeepCalmAndMIC.Models;
 
 namespace KeepCalmAndMIC.Models
 {
-    public class Internship
+    public class Internship : IBaseModel
     {
         public Internship (int numberOfWeek)
         {
@@ -20,11 +21,16 @@ namespace KeepCalmAndMIC.Models
         }
 
         public List<Week> WeeksOfTheStage { get; set; } = new List<Week>();
+        public int CurrentWeek { get; set; }
+        public int CurrentDayOfTheWeek { get; set; }
         public Stats PlayerStats { get; } = new Stats();
-        public int CurrentWeek { get; }
-        public int CurrentDayOfTheWeek { get; }
+		[Key]
+		public int Id { get; set; }
+		public DateTime CreatedOn { get; set; }
+		public DateTime ModifiedOn { get; set; }
 
-        public int SetActionOnADay(Card card, int weekNumber, int dayNumberOfWeek)
+
+		public int SetActionOnADay(Card card, int weekNumber, int dayNumberOfWeek)
         {
             if(WeeksOfTheStage.ElementAt(weekNumber).DaysOfTheWeek.ElementAt(dayNumberOfWeek).RemainningHours - card.TimeCostInHour >= 0)
             {
@@ -58,6 +64,21 @@ namespace KeepCalmAndMIC.Models
             }
 
             return stats;
+        }
+
+        public Stats NextDay()
+        {
+            if(CurrentDayOfTheWeek + 1 <= 4)
+            {
+                CurrentDayOfTheWeek += 1;
+            }
+            else
+            {
+                CurrentDayOfTheWeek = 0;
+                CurrentWeek += 1;
+            }
+
+            return GetStageStats();
         }
     }
 }
