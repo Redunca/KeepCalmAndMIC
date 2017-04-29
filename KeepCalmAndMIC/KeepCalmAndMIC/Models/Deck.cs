@@ -1,16 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
-using System.Web;
-using KeepCalmAndMIC.Models;
 
 namespace KeepCalmAndMIC.Models
 {
-    public class Deck
+	public class Deck : IBaseModel
     {
-        public List<Card> CardList { get; set; } = new List<Card>();
-       
-        public List<Card> GetHandCard(int numberOfCards)
+		[Key]
+		public int Id { get; set; }
+		public DateTime CreatedOn { get; set; }
+		public DateTime ModifiedOn { get; set; }
+
+		public List<Card> CardList { get; set; } = new List<Card>();
+
+		public int GameId { get; set; }
+		[ForeignKey("GameId")]
+		public Game Game { get; set; }
+
+		public List<Card> GetHandCard(int numberOfCards)
         {
             Random rnd = new Random();
             List<Card> handCards = new List<Card>();
@@ -45,6 +54,19 @@ namespace KeepCalmAndMIC.Models
             return card;
         }
 
-        
+        public void FeedDeckAction(int numberOfCards)
+        {
+            //Repository Card :> GetRandomCards(TypeCard typeCard, int numberOfCards) => Type action
+        }
+
+        public void FeedDeckEvent(int numberOfCards)
+        {
+            //Repository Card :> GetRandomCards(TypeCard typeCard, int numberOfCards) => Type Event  
+        }
     }
+
+	public enum TypeDeck
+	{
+		Action, Event, Hand
+	}
 }

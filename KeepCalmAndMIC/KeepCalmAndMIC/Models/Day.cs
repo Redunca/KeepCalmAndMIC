@@ -1,34 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
-using KeepCalmAndMIC.Models;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace KeepCalmAndMIC.Models
 {
-    public class Day : IBaseModel
+	public class Day : IBaseModel
     {
-        public Day()
-        {
-            RemainningHours = 8;
-        }
-        
-        public List<Card> SelectedCards { get; set; } = new List<Card>();
-        public List<Card> LivingEvents { get; set; } = new List<Card>();
-        public int RemainningHours { get; set; }
-        public Stats DailyStats { get; set; } = new Stats();
 		[Key]
 		public int Id { get; set; }
 		public DateTime CreatedOn { get; set; }
 		public DateTime ModifiedOn { get; set; }
 
+		public List<Card> SelectedCards { get; set; } = new List<Card>();
+		public List<Card> LivingEvents { get; set; } = new List<Card>();
 
+		public int RemainingHours { get; set; }
+
+		public int WeekId { get; set; }
+		[ForeignKey("WeekId")]
+		public Week Week { get; set; }
+
+		public Day()
+        {
+            RemainingHours = 8;
+        }
+        
 		public int AddSelectedCard(Card card)
         {
-            if(RemainningHours - card.TimeCostInHour >= 0)
+            if(RemainingHours - card.TimeCostInHour >= 0)
             {
-                RemainningHours -= card.TimeCostInHour;
+                RemainingHours -= card.TimeCostInHour;
                 SelectedCards.Add(card);
 
                 return 0;
@@ -43,9 +45,9 @@ namespace KeepCalmAndMIC.Models
 
         public Stats GetDailyStats()
         {
-            Stats stats = DailyStats;
+            Stats stats = new Stats();
 
-            foreach (Card card in SelectedCards)
+			foreach (Card card in SelectedCards)
             {
                 stats.Ambiance += card.EffectOnAmbiance;
                 stats.MutualAid += card.EffectOnMutualAid;
@@ -63,5 +65,6 @@ namespace KeepCalmAndMIC.Models
             
             return stats;
         }
-    }
+
+	}
 }

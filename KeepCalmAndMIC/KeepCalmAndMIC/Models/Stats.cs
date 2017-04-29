@@ -6,9 +6,14 @@ using System.Web;
 
 namespace KeepCalmAndMIC.Models
 {
-    public class Stats : IBaseModel
+    public class Stats
     {
-        public Stats()
+		public double Productivity { get; set; }
+		public double TechnicalSkills { get; set; }
+		public double Ambiance { get; set; }
+		public double MutualAid { get; set; }
+
+		public Stats()
         {
             Productivity = 0;
             TechnicalSkills = 0;
@@ -16,22 +21,13 @@ namespace KeepCalmAndMIC.Models
             MutualAid = 0;
         }
 
-        public Stats(int productivity, int technicalSkills, int ambiance, int mutualAid)
+        public Stats(double productivity, double technicalSkills, double ambiance, double mutualAid)
         {
             Productivity = productivity;
             TechnicalSkills = technicalSkills;
             Ambiance = ambiance;
             MutualAid = mutualAid;
-        }
-
-        public int Productivity { get; set; }
-        public int TechnicalSkills { get; set; }
-        public int Ambiance { get; set; }
-        public int MutualAid { get; set; }
-		[Key]
-		public int Id { get; set; }
-		public DateTime CreatedOn { get; set; }
-		public DateTime ModifiedOn { get; set; }
+        }	
 
 	}
 }

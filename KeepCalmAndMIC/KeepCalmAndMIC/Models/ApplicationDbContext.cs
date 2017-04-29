@@ -24,14 +24,20 @@ namespace KeepCalmAndMIC.Models
 
 			return context;
 		}
-
-		public DbSet<ApplicationUser> Players { get; set; }
+														   
 		public DbSet<Card> Cards { get; set; }
 		public DbSet<Day> Days { get; set; }
 		public DbSet<Deck> Decks { get; set; }
 		public DbSet<Game> Games { get; set; }
-		public DbSet<Internship> Interships { get; set; }		
-		public DbSet<Stats> Statses { get; set; }
+		public DbSet<Internship> Interships { get; set; }
 		public DbSet<Week> Weeks { get; set; }
+
+		protected override void OnModelCreating(DbModelBuilder modelBuilder)
+		{
+			base.OnModelCreating(modelBuilder);
+			modelBuilder.Entity<Day>().HasMany<Card>(d => d.SelectedCards).WithOptional(c => c.DayAction);
+			modelBuilder.Entity<Day>().HasMany<Card>(d => d.LivingEvents).WithOptional(c => c.DayEvent);							   
+		}
+
 	}
 }
