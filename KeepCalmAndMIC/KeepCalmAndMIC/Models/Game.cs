@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
 namespace KeepCalmAndMIC.Models
 {
-    public class Game
+    public class Game : IBaseModel
     {
         public Game()
         {
@@ -20,8 +21,13 @@ namespace KeepCalmAndMIC.Models
         public Deck EventDeck { get; set; }
         public Deck ActionDeck { get; set; }
         public Deck HandDeck { get; set; }
+		[Key]
+		public int Id { get; set; }
+		public DateTime CreatedOn { get; set; }
+		public DateTime ModifiedOn { get; set; }
 
-        public int UseActionCardOnADay(Card card, int weekNumber, int dayNumberOfWeek)
+
+		public int UseActionCardOnADay(Card card, int weekNumber, int dayNumberOfWeek)
         {
             return stage.SetActionOnADay(card, weekNumber, dayNumberOfWeek);
         }

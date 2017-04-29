@@ -1,16 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using KeepCalmAndMIC.Models;
 
 namespace KeepCalmAndMIC.Models
 {
-    public class Deck
+    public class Deck : IBaseModel
     {
         public List<Card> CardList { get; set; } = new List<Card>();
-       
-        public List<Card> GetHandCard(int numberOfCards)
+		[Key]
+		public int Id { get; set; }
+		public DateTime CreatedOn { get; set; }
+		public DateTime ModifiedOn { get; set; }
+
+
+		public List<Card> GetHandCard(int numberOfCards)
         {
             Random rnd = new Random();
             List<Card> handCards = new List<Card>();

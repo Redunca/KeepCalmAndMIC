@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -28,6 +29,7 @@ namespace KeepCalmAndMIC.Models
         public int EffectOnAmbiance { get; set; }
         public int TimeCostInHour { get; set; }
 
+		[Key]
         public int Id { get; set; }
 
         public DateTime CreatedOn { get; set; }
