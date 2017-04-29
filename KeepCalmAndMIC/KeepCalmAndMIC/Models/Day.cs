@@ -25,46 +25,5 @@ namespace KeepCalmAndMIC.Models
         {
             RemainingHours = 8;
         }
-        
-		public int AddSelectedCard(Card card)
-        {
-            if(RemainingHours - card.TimeCostInHour >= 0)
-            {
-                RemainingHours -= card.TimeCostInHour;
-                SelectedCards.Add(card);
-
-                return 0;
-            }
-            return 1;
-        }
-
-        public void AddEvents(Card card)
-        {
-            LivingEvents.Add(card);
-        }
-
-        public Stats GetDailyStats()
-        {
-            Stats stats = new Stats();
-
-			foreach (Card card in SelectedCards)
-            {
-                stats.Ambiance += card.EffectOnAmbiance;
-                stats.MutualAid += card.EffectOnMutualAid;
-                stats.Productivity += card.EffectOnProduction;
-                stats.TechnicalSkills += card.EffectOnTechnicalSkills;
-            }
-
-            foreach (Card card in LivingEvents)
-            {
-                stats.Ambiance += card.EffectOnAmbiance;
-                stats.MutualAid += card.EffectOnMutualAid;
-                stats.Productivity += card.EffectOnProduction;
-                stats.TechnicalSkills += card.EffectOnTechnicalSkills;
-            }
-            
-            return stats;
-        }
-
 	}
 }

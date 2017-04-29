@@ -26,22 +26,5 @@ namespace KeepCalmAndMIC.Models
             }
             
         }
-
-		public Stats GetWeekStats()
-        {
-            Stats stats = new Stats();
-
-            foreach (Day day in DaysOfTheWeek)
-            {
-				Stats dailyStats = day.GetDailyStats();
-
-                stats.Ambiance += dailyStats.Ambiance;
-                stats.MutualAid += dailyStats.MutualAid;
-                stats.Productivity += dailyStats.Productivity;
-                stats.TechnicalSkills += dailyStats.TechnicalSkills;
-            }
-
-            return stats;
-        }
     }
 }
