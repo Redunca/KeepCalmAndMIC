@@ -9,12 +9,6 @@ namespace KeepCalmAndMIC.BusinessLayer
 	public class CardManagement : BaseManagement<CardManagement>
 	{
 		public CardManagement(IOwinContext owinContext) : base(owinContext) { }
-        /*
-        public void Exemple()
-        {
 
-            UnitOfWork.Cards.GetRandomCards()
-        }
-        */
 	}
 }
