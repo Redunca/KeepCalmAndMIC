@@ -10,7 +10,6 @@ namespace KeepCalmAndMIC.Repository
     {
         public GameRepository(ApplicationDbContext context) : base(context) { }
 
-		//public async Task<List<Game>> GetUserGamesSorted
-
+        
     }
 }

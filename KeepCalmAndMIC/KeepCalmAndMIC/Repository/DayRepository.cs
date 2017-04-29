@@ -58,5 +58,19 @@ namespace KeepCalmAndMIC.Repository
 
             return stats;
         }
+
+        public async Task SetActionOnADay(int id, Card card)
+        {
+            Context.Days.First(d => d.Id == id).SelectedCards.Add(card);
+
+            await Context.SaveChangesAsync();
+        }
+
+        public async Task SetEventOnADay(int id, Card card)
+        {
+            Context.Days.First(d => d.Id == id).LivingEvents.Add(card);
+
+            await Context.SaveChangesAsync();
+        }
     }
 }
