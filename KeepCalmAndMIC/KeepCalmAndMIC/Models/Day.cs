@@ -10,14 +10,55 @@ namespace KeepCalmAndMIC.Models
     {
         public Day()
         {
+            RemainningHours = 8;
+            DailyMutualAid = 0;
+            DailyProductivity = 0;
+            TechnicalAptitudes = 0;
+        }
+        
+        public List<Card> SelectedCards { get; set; } = new List<Card>();
+        public List<Card> LivingEvents { get; set; } = new List<Card>();
+        public int RemainningHours { get; set; }
+        public Stats DailyStats { get; set; } = new Stats();
 
+        public int AddSelectedCard(Card card)
+        {
+            if(RemainningHours - card.TimeCostInHour >= 0)
+            {
+                RemainningHours -= card.TimeCostInHour;
+                SelectedCards.Add(card);
+
+                return 0;
+            }
+            return 1;
         }
 
-        private int DailyProductivity = 0;
-        private int DailyMutualAid = 0;
-        private int TechnicalAptitudes = 0;
-        private List<Card> SelectedCards = new List<Card>();
-        private List<Event> LivingEvents = new List<Event>();
-        private Stats DailyStats = new Stats();
+        public void AddEvents(Card card)
+        {
+            LivingEvents.Add(card);
+        }
+
+        public Stats GetDailyStats()
+        {
+            Stats stats = DailyStats;
+
+            foreach (Card card in SelectedCards)
+            {
+                stats.Ambiance += card.EffectOnAmbiance;
+                stats.DailyMutualAid += card.EffectOnMutualAid;
+                stats.Productivity += card.EffectOnProduction;
+                stats.TechnicalSkills += card.EffectOnTechnicalSkills;
+            }
+
+            foreach (Card card in LivingEvents)
+            {
+                stats.Ambiance += card.EffectOnAmbiance;
+                stats.DailyMutualAid += card.EffectOnMutualAid;
+                stats.Productivity += card.EffectOnProduction;
+                stats.TechnicalSkills += card.EffectOnTechnicalSkills;
+            }
+            
+            return stats;
+        }
     }
 }

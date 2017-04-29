@@ -16,7 +16,22 @@ namespace KeepCalmAndMIC.Models
             
         }
 
-        private List<Day> DaysOfTheWeek = new List<Day>();
-        private Stats WeeklyStats = new Stats();
+        public List<Day> DaysOfTheWeek { get; set; } = new List<Day>();
+
+        public Stats GetWeekStats()
+        {
+            Stats stats = new Stats();
+
+            foreach (Day day in DaysOfTheWeek)
+            {
+                stats.Ambiance += day.DailyStats.Ambiance;
+                stats.Learning += day.DailyStats.Learning;
+                stats.Productivity += day.DailyStats.Productivity;
+                stats.SocialAid += day.DailyStats.SocialAid;
+                stats.TechnicalSkills += day.DailyStats.TechnicalSkills;
+            }
+
+            return stats;
+        }
     }
 }

@@ -7,10 +7,9 @@ namespace KeepCalmAndMIC.Models
 {
     public class Stats
     {
-        private int Productivity = 0;
-        private int Learning = 0;
-        private int Ambiance = 0;
-        private int SocialAid = 0;
-        private int TechnicalSkills = 0;
+        public int Productivity { get; set; }
+        public int TechnicalSkills { get; set; }
+        public int Ambiance { get; set; }
+        public int DailyMutualAid { get; set; }
     }
 }
