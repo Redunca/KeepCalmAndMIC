@@ -11,9 +11,9 @@ namespace KeepCalmAndMIC.Models
 		[Key]
 		public int Id { get; set; }
 
-		public DateTime CreatedOn { get; set; }
+		public DateTime? CreatedOn { get; set; }
 
-		public DateTime ModifiedOn { get; set; }
+		public DateTime? ModifiedOn { get; set; }
         
         public string Name { get; set; }
         public string Description { get; set; }
@@ -33,9 +33,11 @@ namespace KeepCalmAndMIC.Models
 		[ForeignKey("DayEventId")]
 		public Day DayEvent { get; set; }
 
-		public int DeckId { get; set; }
+		public int? DeckId { get; set; }
 		[ForeignKey("DeckId")]
 		public Deck Deck { get; set; }
+
+		public Card() { }
 
 		public Card(TypeCard typeCard, string name, string description, double effectOnProductivity, double effectOnMutualAid,
 			double effectOnTechnicalSkills, double effectOnAmbiance, int timeCost, int energyCost, double effectOnProduction = 0)

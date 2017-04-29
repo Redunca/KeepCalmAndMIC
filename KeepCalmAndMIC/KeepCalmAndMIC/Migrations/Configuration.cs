@@ -69,6 +69,8 @@ namespace KeepCalmAndMIC.Migrations
 			context.Cards.AddOrUpdate(new Card(TypeCard.Action, "Défense à blanc du mémoire", "", 0, 0, 10, 0, 8, 5, 0));
 			context.Cards.AddOrUpdate(new Card(TypeCard.Action, "Préparation aux entretiens d'embauches", "", 0, 0, 5, 0, 4, 0, 0));
 			context.Cards.AddOrUpdate(new Card(TypeCard.Action, "Activité de fin de stage", "", 0, 0, 0, 10, 8, 4, 0));
+
+			context.SaveChanges();
 		}
     }
 }

@@ -9,8 +9,8 @@ namespace KeepCalmAndMIC.Models
     {
 		[Key]
 		public int Id { get; set; }
-		public DateTime CreatedOn { get; set; }
-		public DateTime ModifiedOn { get; set; }
+		public DateTime? CreatedOn { get; set; }
+		public DateTime? ModifiedOn { get; set; }
 
 		public List<Day> DaysOfTheWeek { get; set; } = new List<Day>();
 
@@ -26,6 +26,23 @@ namespace KeepCalmAndMIC.Models
             }
             
         }
+
+    //    public Stats GetWeekStats()
+    //    {
+    //        Stats stats = new Stats();
+
+    //        foreach (Day day in DaysOfTheWeek)
+    //        {
+				//Stats dailyStats = day.GetDailyStats();
+
+    //            stats.Ambiance += dailyStats.Ambiance;
+    //            stats.MutualAid += dailyStats.MutualAid;
+    //            stats.Productivity += dailyStats.Productivity;
+    //            stats.TechnicalSkills += dailyStats.TechnicalSkills;
+    //        }
+
+    //        return stats;
+    //    }
 
     }
     
