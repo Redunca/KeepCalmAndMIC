@@ -10,6 +10,5 @@ namespace KeepCalmAndMIC.Repository
     {
         public DeckRepository(ApplicationDbContext context) : base(context) { }
 
-        
     }
 }

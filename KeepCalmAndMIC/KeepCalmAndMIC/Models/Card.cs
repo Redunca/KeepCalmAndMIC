@@ -6,21 +6,6 @@ namespace KeepCalmAndMIC.Models
 {
 	public class Card : IBaseModel
     {
-        public Card(TypeCard typeCard, string name, string description, double effectOnProduction, double effectOnMutualAid, double effectOnTechnicalSkills, double effectOnAmbiance, int timeCost, double internSkillsImprovement, int energyCost, double effectOnProductivity)
-        {
-            CardType = typeCard;
-            Name = name;
-            Description = description;
-            EffectOnProduction = effectOnProduction;
-            EffectOnMutualAid = effectOnMutualAid;
-            EffectOnTechnicalSkills = effectOnTechnicalSkills;
-            EffectOnAmbiance = effectOnAmbiance;
-            TimeCostInHour = timeCost;
-            InternSkillsImprovement = internSkillsImprovement;
-            EnergyCost = energyCost;
-            EffectOnProductivity = effectOnProductivity;
-        }
-
         public TypeCard CardType { get; set; }
 
 		[Key]
@@ -38,8 +23,7 @@ namespace KeepCalmAndMIC.Models
         public double EffectOnAmbiance { get; set; }
         public double EffectOnProductivity { get; set; }
         public int TimeCostInHour { get; set; }
-        
-        public double InternSkillsImprovement { get; set; }
+        												  
         public int EnergyCost { get; set; }
         
 		public int? DayActionId { get; set; }
@@ -53,7 +37,8 @@ namespace KeepCalmAndMIC.Models
 		[ForeignKey("DeckId")]
 		public Deck Deck { get; set; }
 
-		public Card(TypeCard typeCard, string name, string description, int effectOnProduction, int effectOnMutualAid, int effectOnTechnicalSkills, int effectOnAmbiance, int timeCost)
+		public Card(TypeCard typeCard, string name, string description, double effectOnProductivity, double effectOnMutualAid,
+			double effectOnTechnicalSkills, double effectOnAmbiance, int timeCost, int energyCost, double effectOnProduction = 0)
 		{
 			CardType = typeCard;
 			Name = name;
@@ -63,6 +48,8 @@ namespace KeepCalmAndMIC.Models
 			EffectOnTechnicalSkills = effectOnTechnicalSkills;
 			EffectOnAmbiance = effectOnAmbiance;
 			TimeCostInHour = timeCost;
+			EnergyCost = energyCost;
+			EffectOnProductivity = effectOnProductivity;
 		}
 
 	}
