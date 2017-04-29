@@ -8,7 +8,7 @@ namespace KeepCalmAndMIC.Models
 {
     public class Card : IBaseModel
     {
-        public Card(TypeCard typeCard, string name, string description, int effectOnProduction, int effectOnMutualAid, int effectOnTechnicalSkills, int effectOnAmbiance, int timeCost)
+        public Card(TypeCard typeCard, string name, string description, double effectOnProduction, double effectOnMutualAid, double effectOnTechnicalSkills, double effectOnAmbiance, int timeCost, double internSkillsImprovement, int energyCost, double effectOnProductivity)
         {
             CardType = typeCard;
             Name = name;
@@ -18,18 +18,25 @@ namespace KeepCalmAndMIC.Models
             EffectOnTechnicalSkills = effectOnTechnicalSkills;
             EffectOnAmbiance = effectOnAmbiance;
             TimeCostInHour = timeCost;
+            InternSkillsImprovement = internSkillsImprovement;
+            EnergyCost = energyCost;
+            EffectOnProductivity = effectOnProductivity;
         }
 
         public TypeCard CardType { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public int EffectOnProduction { get; set; }
-        public int EffectOnMutualAid { get; set; }
-        public int EffectOnTechnicalSkills { get; set; }
-        public int EffectOnAmbiance { get; set; }
+        public double EffectOnProduction { get; set; }
+        public double EffectOnMutualAid { get; set; }
+        public double EffectOnTechnicalSkills { get; set; }
+        public double EffectOnAmbiance { get; set; }
+        public double EffectOnProductivity { get; set; }
         public int TimeCostInHour { get; set; }
 
-		[Key]
+        public double InternSkillsImprovement { get; set; }
+        public int EnergyCost { get; set; }
+
+        [Key]
         public int Id { get; set; }
 
         public DateTime CreatedOn { get; set; }
@@ -43,4 +50,5 @@ namespace KeepCalmAndMIC.Models
         Event,
         Action
     }
+    
 }
