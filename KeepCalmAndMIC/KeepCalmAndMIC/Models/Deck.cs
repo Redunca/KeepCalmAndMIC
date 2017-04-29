@@ -12,8 +12,16 @@ namespace KeepCalmAndMIC.Models
        
         public List<Card> GetHandCard(int numberOfCards)
         {
+            Random rnd = new Random();
             List<Card> handCards = new List<Card>();
-            // Select x cards from CardList (and remove) and return these cards
+            int positionOfTheCard;
+            
+            for (int i = 1; i <= numberOfCards; i++)
+            {
+                positionOfTheCard = rnd.Next(0, CardList.Count());
+                handCards.Add(CardList.ElementAt(positionOfTheCard));
+                CardList.RemoveAt(positionOfTheCard);
+            }
 
             return handCards;
         } 
@@ -28,7 +36,13 @@ namespace KeepCalmAndMIC.Models
 
         public Card GetARandomCard()
         {
-            // Return a random Card From the card list (For events)
+            Random rnd = new Random();
+            int positionOfTheCard = rnd.Next(0, CardList.Count());
+            Card card = CardList.ElementAt(positionOfTheCard);
+
+            CardList.RemoveAt(positionOfTheCard);
+
+            return card;
         }
 
         public void FeedDeckAction(int numberOfCards)
