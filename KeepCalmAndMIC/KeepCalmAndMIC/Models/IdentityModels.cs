@@ -23,6 +23,7 @@ namespace KeepCalmAndMIC.Models
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
+            
         }
 
         public static ApplicationDbContext Create()
