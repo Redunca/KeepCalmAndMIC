@@ -32,5 +32,20 @@ namespace KeepCalmAndMIC.Models
             // if (Y) => Number of event ? 1, 2 or 3?
             // Assign the events 
         }
+
+        public int GetCurrentWeek()
+        {
+            return stage.CurrentWeek;
+        }
+
+        public int GetCurrentDayOfTheWeek()
+        {
+            return stage.CurrentDayOfTheWeek;
+        }
+
+        public Stats NexDay()
+        {
+            return stage.NextDay();
+        }
     }
 }

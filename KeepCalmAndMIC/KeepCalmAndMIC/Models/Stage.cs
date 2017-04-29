@@ -20,9 +20,8 @@ namespace KeepCalmAndMIC.Models
         }
 
         public List<Week> WeeksOfTheStage { get; set; } = new List<Week>();
-        public Stats PlayerStats { get; } = new Stats();
-        public int CurrentWeek { get; }
-        public int CurrentDayOfTheWeek { get; }
+        public int CurrentWeek { get; set; }
+        public int CurrentDayOfTheWeek { get; set; }
 
         public int SetActionOnADay(Card card, int weekNumber, int dayNumberOfWeek)
         {
@@ -58,6 +57,21 @@ namespace KeepCalmAndMIC.Models
             }
 
             return stats;
+        }
+
+        public Stats NextDay()
+        {
+            if(CurrentDayOfTheWeek + 1 <= 4)
+            {
+                CurrentDayOfTheWeek += 1;
+            }
+            else
+            {
+                CurrentDayOfTheWeek = 0;
+                CurrentWeek += 1;
+            }
+
+            return GetStageStats();
         }
     }
 }
