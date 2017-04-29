@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 using KeepCalmAndMIC.Models;
@@ -9,32 +10,35 @@ namespace KeepCalmAndMIC.Models
 {
     public class Internship : IBaseModel
     {
-        public Internship (int numberOfWeek)
-        {
-            for(int i = 1; i <= numberOfWeek; i ++)
-            {
-                WeeksOfTheStage.Add(new Week());
-            }
-
-            CurrentWeek = 0;
-            CurrentDayOfTheWeek = 0;
-        }
-
-        public List<Week> WeeksOfTheStage { get; set; } = new List<Week>();
-        public int CurrentWeek { get; set; }
-        public int CurrentDayOfTheWeek { get; set; }
-        public Stats PlayerStats { get; } = new Stats();
 		[Key]
 		public int Id { get; set; }
 		public DateTime CreatedOn { get; set; }
 		public DateTime ModifiedOn { get; set; }
 
+        public List<Week> WeeksOfTheIntership { get; set; } = new List<Week>();
+        public int CurrentWeek { get; set; }
+        public int CurrentDayOfTheWeek { get; set; }
+
+		public int GameId { get; set; }
+		[ForeignKey("GameId")]
+		public Game Game { get; set; }
+
+		public Internship(int numberOfWeek)
+		{
+			for (int i = 1; i <= numberOfWeek; i++)
+			{
+				WeeksOfTheIntership.Add(new Week());
+			}
+
+			CurrentWeek = 0;
+			CurrentDayOfTheWeek = 0;
+		}
 
 		public int SetActionOnADay(Card card, int weekNumber, int dayNumberOfWeek)
         {
-            if(WeeksOfTheStage.ElementAt(weekNumber).DaysOfTheWeek.ElementAt(dayNumberOfWeek).RemainningHours - card.TimeCostInHour >= 0)
+            if(WeeksOfTheIntership.ElementAt(weekNumber).DaysOfTheWeek.ElementAt(dayNumberOfWeek).RemainingHours - card.TimeCostInHour >= 0)
             {
-                WeeksOfTheStage.ElementAt(weekNumber).DaysOfTheWeek.ElementAt(dayNumberOfWeek).SelectedCards.Add(card);
+                WeeksOfTheIntership.ElementAt(weekNumber).DaysOfTheWeek.ElementAt(dayNumberOfWeek).SelectedCards.Add(card);
 
                 return 0;
             }
@@ -46,14 +50,14 @@ namespace KeepCalmAndMIC.Models
 
         public void SetEventOnADay(Card card, int weekNumber, int dayNumberOfWeek)
         {
-            WeeksOfTheStage.ElementAt(weekNumber).DaysOfTheWeek.ElementAt(dayNumberOfWeek).SelectedCards.Add(card);
+            WeeksOfTheIntership.ElementAt(weekNumber).DaysOfTheWeek.ElementAt(dayNumberOfWeek).SelectedCards.Add(card);
         }
 
         public Stats GetStageStats()
         {
             Stats stats = new Stats();
 
-            foreach (Week week in WeeksOfTheStage)
+            foreach (Week week in WeeksOfTheIntership)
             {
                 Stats tmpStats = week.GetWeekStats();
 
@@ -64,6 +68,11 @@ namespace KeepCalmAndMIC.Models
             }
 
             return stats;
+        }
+
+        public Stats GetStatsOfAWeek(int week)
+        {
+            return WeeksOfTheStage.ElementAt(week).GetWeekStats();
         }
 
         public Stats NextDay()
@@ -80,5 +89,6 @@ namespace KeepCalmAndMIC.Models
 
             return GetStageStats();
         }
-    }
+    
+	}
 }

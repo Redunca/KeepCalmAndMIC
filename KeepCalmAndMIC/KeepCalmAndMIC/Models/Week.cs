@@ -1,14 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace KeepCalmAndMIC.Models
 {
-    public class Week : IBaseModel
+	public class Week : IBaseModel
     {
-        public Week()
+		[Key]
+		public int Id { get; set; }
+		public DateTime CreatedOn { get; set; }
+		public DateTime ModifiedOn { get; set; }
+
+		public List<Day> DaysOfTheWeek { get; set; } = new List<Day>();
+
+		public int InternshipId { get; set; }
+		[ForeignKey("InternshipId")]
+		public Internship Internship { get; set; }
+
+		public Week()
         {
             for(int i = 0; i <= 4; i++)
             {
@@ -29,10 +39,12 @@ namespace KeepCalmAndMIC.Models
 
             foreach (Day day in DaysOfTheWeek)
             {
-                stats.Ambiance += day.DailyStats.Ambiance;
-                stats.MutualAid += day.DailyStats.MutualAid;
-                stats.Productivity += day.DailyStats.Productivity;
-                stats.TechnicalSkills += day.DailyStats.TechnicalSkills;
+				Stats dailyStats = day.GetDailyStats();
+
+                stats.Ambiance += dailyStats.Ambiance;
+                stats.MutualAid += dailyStats.MutualAid;
+                stats.Productivity += dailyStats.Productivity;
+                stats.TechnicalSkills += dailyStats.TechnicalSkills;
             }
 
             return stats;
