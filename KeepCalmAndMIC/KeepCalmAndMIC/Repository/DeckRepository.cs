@@ -9,5 +9,7 @@ namespace KeepCalmAndMIC.Repository
     public class DeckRepository : BaseModelRepository<Deck>
     {
         public DeckRepository(ApplicationDbContext context) : base(context) { }
+
+        
     }
 }
