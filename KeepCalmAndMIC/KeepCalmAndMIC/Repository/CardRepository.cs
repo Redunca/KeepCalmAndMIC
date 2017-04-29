@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using KeepCalmAndMIC.Models;
+using System.Threading.Tasks;
 
 namespace KeepCalmAndMIC.Repository
 {
@@ -10,7 +11,7 @@ namespace KeepCalmAndMIC.Repository
     {
         public CardRepository(ApplicationDbContext context) : base(context) { }
 
-        public List<Card> GetRandomCards(TypeCard typeCard, int numberOfCards)
+        public async Task<List<Card>> GetRandomCardsAsync(TypeCard typeCard, int numberOfCards)
         {
             Random rnd = new Random();
             List<Card> randomCards = new List<Card>();
@@ -21,6 +22,8 @@ namespace KeepCalmAndMIC.Repository
             {
                 randomCards.Add(Context.Cards.ElementAt(rnd.Next(0, numberOfRows)));
             }
+
+            await Context.SaveChangesAsync();
 
             return randomCards;
         }

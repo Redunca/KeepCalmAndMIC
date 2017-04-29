@@ -70,6 +70,11 @@ namespace KeepCalmAndMIC.Models
             return stats;
         }
 
+        public Stats GetStatsOfAWeek(int week)
+        {
+            return WeeksOfTheStage.ElementAt(week).GetWeekStats();
+        }
+
         public Stats NextDay()
         {
             if(CurrentDayOfTheWeek + 1 <= 4)
