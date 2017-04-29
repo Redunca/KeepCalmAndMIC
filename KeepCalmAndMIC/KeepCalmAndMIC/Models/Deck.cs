@@ -8,7 +8,7 @@ namespace KeepCalmAndMIC.Models
 {
     public class Deck
     {
-        public List<Card> CardList { get; } = new List<Card>();
+        public List<Card> CardList { get; set; } = new List<Card>();
        
         public List<Card> GetHandCard(int numberOfCards)
         {

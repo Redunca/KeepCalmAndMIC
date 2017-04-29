@@ -11,9 +11,6 @@ namespace KeepCalmAndMIC.Models
         public Day()
         {
             RemainningHours = 8;
-            DailyMutualAid = 0;
-            DailyProductivity = 0;
-            TechnicalAptitudes = 0;
         }
         
         public List<Card> SelectedCards { get; set; } = new List<Card>();
@@ -45,7 +42,7 @@ namespace KeepCalmAndMIC.Models
             foreach (Card card in SelectedCards)
             {
                 stats.Ambiance += card.EffectOnAmbiance;
-                stats.DailyMutualAid += card.EffectOnMutualAid;
+                stats.MutualAid += card.EffectOnMutualAid;
                 stats.Productivity += card.EffectOnProduction;
                 stats.TechnicalSkills += card.EffectOnTechnicalSkills;
             }
@@ -53,7 +50,7 @@ namespace KeepCalmAndMIC.Models
             foreach (Card card in LivingEvents)
             {
                 stats.Ambiance += card.EffectOnAmbiance;
-                stats.DailyMutualAid += card.EffectOnMutualAid;
+                stats.MutualAid += card.EffectOnMutualAid;
                 stats.Productivity += card.EffectOnProduction;
                 stats.TechnicalSkills += card.EffectOnTechnicalSkills;
             }

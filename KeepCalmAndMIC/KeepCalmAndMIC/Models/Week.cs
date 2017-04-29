@@ -25,9 +25,8 @@ namespace KeepCalmAndMIC.Models
             foreach (Day day in DaysOfTheWeek)
             {
                 stats.Ambiance += day.DailyStats.Ambiance;
-                stats.Learning += day.DailyStats.Learning;
+                stats.MutualAid += day.DailyStats.MutualAid;
                 stats.Productivity += day.DailyStats.Productivity;
-                stats.SocialAid += day.DailyStats.SocialAid;
                 stats.TechnicalSkills += day.DailyStats.TechnicalSkills;
             }
 

@@ -37,5 +37,10 @@ namespace KeepCalmAndMIC.Models
                 return 1;
             }
         }
+
+        public void SetEventOnADay(Card card, int weekNumber, int dayNumberOfWeek)
+        {
+            WeeksOfTheStage.ElementAt(weekNumber).DaysOfTheWeek.ElementAt(dayNumberOfWeek).SelectedCards.Add(card);
+        }
     }
 }
