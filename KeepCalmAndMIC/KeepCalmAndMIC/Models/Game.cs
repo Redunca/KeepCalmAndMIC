@@ -32,15 +32,15 @@ namespace KeepCalmAndMIC.Models
 			Decks = new Dictionary<TypeDeck, Deck>();
 
 			Deck action = new Deck();
-			action.FeedDeckAction(600);
+			// action.FeedDeckAction(600);
 			Decks.Add(TypeDeck.Action, action);
 
 			Deck events = new Deck();
-			events.FeedDeckEvent(75);
+			// events.FeedDeckEvent(75);
 			Decks.Add(TypeDeck.Event, events);
 
 			Deck hand = new Deck();
-			hand.CardList = action.GetHandCard(8);
+			// hand.CardList = action.GetHandCard(8);
 			Decks.Add(TypeDeck.Hand, new Deck());
 		}
 

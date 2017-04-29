@@ -216,7 +216,12 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="BusinessLayer\BaseManagement.cs" />
     <Compile Include="BusinessLayer\CardManagement.cs" />
+    <Compile Include="BusinessLayer\DayManagement.cs" />
+    <Compile Include="BusinessLayer\DeckManagement.cs" />
+    <Compile Include="BusinessLayer\GameManagement.cs" />
+    <Compile Include="BusinessLayer\WeekManagement.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PlayController.cs" />
@@ -248,8 +253,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\BaseModelRepository.cs" />
     <Compile Include="Repository\CardRepository.cs" />
+    <Compile Include="Repository\DayRepository.cs" />
+    <Compile Include="Repository\DeckRepository.cs" />
+    <Compile Include="Repository\GameRepository.cs" />
     <Compile Include="Repository\IRepository.cs" />
     <Compile Include="Repository\UnitOfWork.cs" />
+    <Compile Include="Repository\WeekRepository.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -297,9 +306,7 @@
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Web.config">
-      <SubType>Designer</SubType>
-    </Content>
+    <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
