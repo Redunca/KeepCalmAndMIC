@@ -2,10 +2,8 @@
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
 
 namespace KeepCalmAndMIC.BusinessLayer
 {
@@ -61,6 +59,30 @@ namespace KeepCalmAndMIC.BusinessLayer
         {
             Game game = await UnitOfWork.Games.GetById(id);
             InternshipManagement internshipManagement = OwinContext.Get<InternshipManagement>();
+
+            Deck handDeck = new Deck();
+            Deck actionDeck = new Deck();
+
+            if (game.Decks.TryGetValue(TypeDeck.Hand, out handDeck))
+            {
+                if (game.Decks.TryGetValue(TypeDeck.Action, out actionDeck))
+                {
+                    handDeck.CardList = await UnitOfWork.Decks.GetHandCard(actionDeck.Id, 8);
+                }
+                else
+                {
+                    // meeeeeerde !!!!
+                }
+
+
+
+
+                
+            }
+            else
+            {
+                // meeeeeerde !!!!
+            }
             
             return await internshipManagement.NextDayAsync(game.InternshipId);
         }
@@ -68,10 +90,35 @@ namespace KeepCalmAndMIC.BusinessLayer
         public async Task StartGame(int id)
         {
             Game game = await UnitOfWork.Games.GetById(id);
-            InternshipManagement internshipManagement = OwinContext.Get<InternshipManagement>();
+            GameManagement gameManagement = OwinContext.Get<GameManagement>();
+
+            Deck eventDeck = new Deck();
+            Deck actionDeck = new Deck();
+            Deck handDeck = new Deck();
 
             game.Internship.CurrentWeek = 0;
             game.Internship.CurrentDayOfTheWeek = 0;
+
+            if (game.Decks.TryGetValue(TypeDeck.Action, out actionDeck))
+            {
+                actionDeck.CardList = await UnitOfWork.Cards.GetRandomCardsAsync(TypeCard.Action, 600);
+            }
+            else
+            {
+                // meeeeeerde !!!!
+            }
+
+            if (game.Decks.TryGetValue(TypeDeck.Event, out eventDeck))
+            {
+                eventDeck.CardList = await UnitOfWork.Cards.GetRandomCardsAsync(TypeCard.Event, 75);
+            }
+            else
+            {
+                // meeeeeerde !!!!
+            }
+
+            await UnitOfWork.SaveChangesAsync();
+            await NexDayAsync(game.Id);
         }
     }
 }

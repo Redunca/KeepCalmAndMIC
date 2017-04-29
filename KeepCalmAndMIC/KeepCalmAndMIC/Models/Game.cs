@@ -31,16 +31,13 @@ namespace KeepCalmAndMIC.Models
 			Internship = new Internship(15);
 			Decks = new Dictionary<TypeDeck, Deck>();
 
-			Deck action = new Deck();
-			// action.FeedDeckAction(600);
+            Deck action = new Deck();
 			Decks.Add(TypeDeck.Action, action);
 
 			Deck events = new Deck();
-			// events.FeedDeckEvent(75);
-			Decks.Add(TypeDeck.Event, events);
+            Decks.Add(TypeDeck.Event, events);
 
 			Deck hand = new Deck();
-			// hand.CardList = action.GetHandCard(8);
 			Decks.Add(TypeDeck.Hand, new Deck());
 		}
         
