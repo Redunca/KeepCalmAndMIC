@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace KeepCalmAndMIC.Controllers
 {
+    [Authorize]
     public class PlayController : Controller
     {
         public static List<WeekViewModel> Weeks { get; set; }
