@@ -19,5 +19,20 @@ namespace KeepCalmAndMIC.BusinessLayer
 
             await UnitOfWork.SaveChangesAsync();
         }
+
+        public async Task<Card> GetARandomCard(int id)
+        {
+            Random rnd = new Random();
+            Deck deck = await UnitOfWork.Decks.GetById(id);
+            
+            int number = rnd.Next(0, deck.CardList.Count());
+
+            Card card = deck.CardList.ElementAt(number);
+            deck.CardList.RemoveAt(number);
+
+            await UnitOfWork.SaveChangesAsync();
+
+            return card;
+        }
     }
 }

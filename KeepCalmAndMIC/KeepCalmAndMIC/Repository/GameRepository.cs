@@ -8,5 +8,7 @@ namespace KeepCalmAndMIC.Repository
     public class GameRepository : BaseModelRepository<Game>
     {
         public GameRepository(ApplicationDbContext context) : base(context) { }
+
+        
     }
 }
