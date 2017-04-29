@@ -10,8 +10,14 @@ namespace KeepCalmAndMIC.Controllers
 {
     public class PlayController : Controller
     {
-        public List<WeekViewModel> Weeks { get; set; }
+        public static List<WeekViewModel> Weeks { get; set; }
+        public static CardsViewModel CardsViewModel { get; set; }
         public static DayOfWeek SelectedDay { get; set; }
+        public static int UsedHoursForToday { get; set; }
+        public PlayController()
+        {
+            CardsViewModel = new CardsViewModel();
+        }
         // GET: Play
         public ActionResult Index()
         {
@@ -26,7 +32,7 @@ namespace KeepCalmAndMIC.Controllers
             }
             ViewBag.ProgressViewModel = new ProgressViewModel();
             ViewBag.TimeViewModel = new TimeViewModel();
-            ViewBag.CardsViewModel = new CardsViewModel();
+            ViewBag.CardsViewModel = CardsViewModel;
             ViewBag.TimeViewModel.SelectedDay = SelectedDay;
             return View();
         }
@@ -43,7 +49,7 @@ namespace KeepCalmAndMIC.Controllers
             }
             ViewBag.ProgressViewModel = new ProgressViewModel();
             ViewBag.TimeViewModel = new TimeViewModel();
-            ViewBag.CardsViewModel = new CardsViewModel();
+            ViewBag.CardsViewModel = CardsViewModel;
             if (ViewBag.TimeViewModel == null)
             {
                 ViewBag.TimeViewModel = new TimeViewModel();
@@ -61,6 +67,12 @@ namespace KeepCalmAndMIC.Controllers
             {
                 ViewBag.TimeViewModel.SelectedDay = DayOfWeek.Sunday;
             }
+            return View("Index");
+        }
+        public ActionResult ToggleCardSelected(Card card)
+        {
+            var tempCard = CardsViewModel.Cards.Find(c => c.Id == card.Id);
+            tempCard.IsSelected = !tempCard.IsSelected;
             return View("Index");
         }
     }
