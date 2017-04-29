@@ -11,11 +11,11 @@ namespace KeepCalmAndMIC.Models.ViewModels
         public CardsViewModel()
         {
             Cards = new List<Card>();
-            Cards.Add(new Card(TypeCard.Action, "Default Card", "This card does some things...Maybe", 0, 0, 0, 0, 0));
+            Cards.Add(new Card(TypeCard.Action, "Default Card", "This card does some things...Maybe", 0, 0, 0, 0, 0,0));
 
-            Cards.Add(new Card(TypeCard.Action, "Other Card", "This card does some things...Maybe", 0, 0, 0, 0, 0));
+            Cards.Add(new Card(TypeCard.Action, "Other Card", "This card does some things...Maybe", 0, 0, 0, 0, 0,0));
 
-            Cards.Add(new Card(TypeCard.Action, "Last Card", "This card does some things...Maybe", 0, 0, 0, 0, 0));
+            Cards.Add(new Card(TypeCard.Action, "Last Card", "This card does some things...Maybe", 0, 0, 0, 0, 0,0));
             
         }
     }

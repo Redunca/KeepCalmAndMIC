@@ -36,9 +36,9 @@ namespace KeepCalmAndMIC.Models
 
 		public int SetActionOnADay(Card card, int weekNumber, int dayNumberOfWeek)
         {
-            if(WeeksOfTheIntership.ElementAt(weekNumber).DaysOfTheWeek.ElementAt(dayNumberOfWeek).RemainingHours - card.TimeCostInHour >= 0)
+            if(WeeksOfTheInternship.ElementAt(weekNumber).DaysOfTheWeek.ElementAt(dayNumberOfWeek).RemainingHours - card.TimeCostInHour >= 0)
             {
-                WeeksOfTheIntership.ElementAt(weekNumber).DaysOfTheWeek.ElementAt(dayNumberOfWeek).SelectedCards.Add(card);
+                WeeksOfTheInternship.ElementAt(weekNumber).DaysOfTheWeek.ElementAt(dayNumberOfWeek).SelectedCards.Add(card);
 
                 return 0;
             }
@@ -50,29 +50,30 @@ namespace KeepCalmAndMIC.Models
 
         public void SetEventOnADay(Card card, int weekNumber, int dayNumberOfWeek)
         {
-            WeeksOfTheIntership.ElementAt(weekNumber).DaysOfTheWeek.ElementAt(dayNumberOfWeek).SelectedCards.Add(card);
+            WeeksOfTheInternship.ElementAt(weekNumber).DaysOfTheWeek.ElementAt(dayNumberOfWeek).SelectedCards.Add(card);
         }
 
         public Stats GetStageStats()
         {
             Stats stats = new Stats();
 
-            foreach (Week week in WeeksOfTheIntership)
-            {
-                Stats tmpStats = week.GetWeekStats();
+            //foreach (Week week in WeeksOfTheInternship)
+            //{
+            //    Stats tmpStats = week.GetWeekStats();
 
-                stats.Ambiance += tmpStats.Ambiance;
-                stats.MutualAid += tmpStats.MutualAid;
-                stats.Productivity += tmpStats.Productivity;
-                stats.TechnicalSkills += tmpStats.TechnicalSkills;
-            }
+            //    stats.Ambiance += tmpStats.Ambiance;
+            //    stats.MutualAid += tmpStats.MutualAid;
+            //    stats.Productivity += tmpStats.Productivity;
+            //    stats.TechnicalSkills += tmpStats.TechnicalSkills;
+            //}
 
             return stats;
         }
 
         public Stats GetStatsOfAWeek(int week)
         {
-            return WeeksOfTheIntership.ElementAt(week).GetWeekStats();
+            return new Stats();
+            //return WeeksOfTheInternship.ElementAt(week).GetWeekStats();
         }
 
         public Stats NextDay()

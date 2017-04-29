@@ -5,7 +5,7 @@
             switch ((DayOfWeek)Model.SelectedDay)
             {
                 case DayOfWeek.Monday:
-                    <input type="button" value="<strong>Monday</strong>" onclick="location.href='@Url.Action("SelectDayOfWeek","Play",new {day = @DayOfWeek.Monday})'"/>
+                    <strong><input type="button" value="Monday" onclick="location.href='@Url.Action("SelectDayOfWeek","Play",new {day = @DayOfWeek.Monday})'" /></strong> 
                     <input type="button" value="Tuesday" onclick="location.href='@Url.Action("SelectDayOfWeek","Play",new {day = @DayOfWeek.Tuesday})'" />
                     <input type="button" value="Wednesday" onclick="location.href='@Url.Action("SelectDayOfWeek","Play",new {day = @DayOfWeek.Wednesday})'" />
                     <input type="button" value="Thursday" onclick="location.href='@Url.Action("SelectDayOfWeek","Play",new {day = @DayOfWeek.Thursday})'" />
@@ -13,7 +13,7 @@
                     break;
                 case DayOfWeek.Tuesday:
                     <input type="button" value="Monday" onclick="location.href='@Url.Action("SelectDayOfWeek","Play",new {day = @DayOfWeek.Monday})'" />
-                    <input type="button" value="<strong>Tuesday</strong>" onclick="location.href='@Url.Action("SelectDayOfWeek","Play",new {day = @DayOfWeek.Tuesday})'" />
+                    <strong><input type="button" value="Tuesday" onclick="location.href='@Url.Action("SelectDayOfWeek","Play",new {day = @DayOfWeek.Tuesday})'" /></strong>
                     <input type="button" value="Wednesday" onclick="location.href='@Url.Action("SelectDayOfWeek","Play",new {day = @DayOfWeek.Wednesday})'" />
                     <input type="button" value="Thursday" onclick="location.href='@Url.Action("SelectDayOfWeek","Play",new {day = @DayOfWeek.Thursday})'" />
                     <input type="button" value="Friday" onclick="location.href='@Url.Action("SelectDayOfWeek","Play",new {day = @DayOfWeek.Friday})'" />
@@ -21,7 +21,7 @@
                 case DayOfWeek.Wednesday:
                     <input type="button" value="Monday" onclick="location.href='@Url.Action("SelectDayOfWeek","Play",new {day = @DayOfWeek.Monday})'" />
                     <input type="button" value="Tuesday" onclick="location.href='@Url.Action("SelectDayOfWeek","Play",new {day = @DayOfWeek.Tuesday})'" />
-                    <input type="button" value="<strong>Wednesday</strong>" onclick="location.href='@Url.Action("SelectDayOfWeek","Play",new {day = @DayOfWeek.Wednesday})'" />
+                    <strong><input type="button" value="Wednesday" onclick="location.href='@Url.Action("SelectDayOfWeek","Play",new {day = @DayOfWeek.Wednesday})'" /></strong>
                     <input type="button" value="Thursday" onclick="location.href='@Url.Action("SelectDayOfWeek","Play",new {day = @DayOfWeek.Thursday})'" />
                     <input type="button" value="Friday" onclick="location.href='@Url.Action("SelectDayOfWeek","Play",new {day = @DayOfWeek.Friday})'" />
                     break;
@@ -29,7 +29,7 @@
                     <input type="button" value="Monday" onclick="location.href='@Url.Action("SelectDayOfWeek","Play",new {day = @DayOfWeek.Monday})'" />
                     <input type="button" value="Tuesday" onclick="location.href='@Url.Action("SelectDayOfWeek","Play",new {day = @DayOfWeek.Tuesday})'" />
                     <input type="button" value="Wednesday" onclick="location.href='@Url.Action("SelectDayOfWeek","Play",new {day = @DayOfWeek.Wednesday})'" />
-                    <input type="button" value="<strong>Thursday</strong>" onclick="location.href='@Url.Action("SelectDayOfWeek","Play",new {day = @DayOfWeek.Thursday})'" />
+                    <strong><input type="button" value="Thursday" onclick="location.href='@Url.Action("SelectDayOfWeek","Play",new {day = @DayOfWeek.Thursday})'" /></strong>
                     <input type="button" value="Friday" onclick="location.href='@Url.Action("SelectDayOfWeek","Play",new {day = @DayOfWeek.Friday})'" />
                     break;
                 case DayOfWeek.Friday:
@@ -37,7 +37,7 @@
                     <input type="button" value="Tuesday" onclick="location.href='@Url.Action("SelectDayOfWeek","Play",new {day = @DayOfWeek.Tuesday})'" />
                     <input type="button" value="Wednesday" onclick="location.href='@Url.Action("SelectDayOfWeek","Play",new {day = @DayOfWeek.Wednesday})'" />
                     <input type="button" value="Thursday" onclick="location.href='@Url.Action("SelectDayOfWeek","Play",new {day = @DayOfWeek.Thursday})'" />
-                    <input type="button" value="<strong>Friday</strong>" onclick="location.href='@Url.Action("SelectDayOfWeek","Play",new {day = @DayOfWeek.Friday})'" />
+                    <strong><input type="button" value="Friday" onclick="location.href='@Url.Action("SelectDayOfWeek","Play",new {day = @DayOfWeek.Friday})'" /></strong>
                     break;
                 default:
                     <input type="button" value="Monday" onclick="location.href='@Url.Action("SelectDayOfWeek","Play",new {day = @DayOfWeek.Monday})'" />
