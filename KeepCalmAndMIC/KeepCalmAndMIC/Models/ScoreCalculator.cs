@@ -36,6 +36,31 @@ namespace KeepCalmAndMIC.Models
                 {
 
                 }
+                if(actionCard.EffectOnMutualAid != 0)
+                {
+                    
+                }
+                if(actionCard.EffectOnProduction != 0)
+                {
+
+                }
+                if(actionCard.EffectOnProductivity != 0){
+
+                }
+                if(actionCard.EffectOnTechnicalSkills != 0)
+                {
+
+                }
+                if(NumberOfHoursRemaining - actionCard.TimeCostInHour < 0)
+                {
+                    Energy -= actionCard.TimeCostInHour - NumberOfHoursRemaining;
+                    NumberOfHoursRemaining = 0;
+                }
+                else
+                {
+                    NumberOfHoursRemaining -= actionCard.TimeCostInHour;
+                }
+                Energy -= actionCard.EnergyCost;
             }
             return eveningStats;
         }
