@@ -27,12 +27,6 @@ namespace KeepCalmAndMIC.Models
             
         }
 
-        public List<Day> DaysOfTheWeek { get; set; } = new List<Day>();
-		[Key]
-		public int Id { get; set; }
-		public DateTime CreatedOn { get; set; }
-		public DateTime ModifiedOn { get; set; }
-
         public Stats GetWeekStats()
         {
             Stats stats = new Stats();

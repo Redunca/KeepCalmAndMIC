@@ -72,7 +72,7 @@ namespace KeepCalmAndMIC.Models
 
         public Stats GetStatsOfAWeek(int week)
         {
-            return WeeksOfTheStage.ElementAt(week).GetWeekStats();
+            return WeeksOfTheIntership.ElementAt(week).GetWeekStats();
         }
 
         public Stats NextDay()
