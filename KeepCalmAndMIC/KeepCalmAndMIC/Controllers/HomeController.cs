@@ -6,12 +6,21 @@ using System.Web.Mvc;
 
 namespace KeepCalmAndMIC.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         public ActionResult Index()
         {
             return View();
         }
+
+		public ActionResult Games()
+		{
+			var name = User.Identity.Name;
+			var games = await UnitOfWork
+
+
+			return View();
+		}
 
         public ActionResult About()
         {
