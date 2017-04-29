@@ -28,6 +28,7 @@ namespace KeepCalmAndMIC.Models
 
         public Card GetARandomCard()
         {
+            return null;
             // Return a random Card From the card list (For events)
         }
 

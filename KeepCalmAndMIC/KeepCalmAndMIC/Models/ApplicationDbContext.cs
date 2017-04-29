@@ -25,7 +25,7 @@ namespace KeepCalmAndMIC.Models
 			return context;
 		}
 
-		public DbSet<ApplicationUser> Players { get; set; }
+		//public DbSet<ApplicationUser> Players { get; set; }
 		public DbSet<Card> Cards { get; set; }
 		public DbSet<Day> Days { get; set; }
 		public DbSet<Deck> Decks { get; set; }
