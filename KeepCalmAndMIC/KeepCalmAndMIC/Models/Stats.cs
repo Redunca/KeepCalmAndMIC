@@ -8,10 +8,10 @@ namespace KeepCalmAndMIC.Models
 {
     public class Stats
     {
-		public int Productivity { get; set; }
-		public int TechnicalSkills { get; set; }
-		public int Ambiance { get; set; }
-		public int MutualAid { get; set; }
+		public double Productivity { get; set; }
+		public double TechnicalSkills { get; set; }
+		public double Ambiance { get; set; }
+		public double MutualAid { get; set; }
 
 		public Stats()
         {
@@ -21,7 +21,7 @@ namespace KeepCalmAndMIC.Models
             MutualAid = 0;
         }
 
-        public Stats(int productivity, int technicalSkills, int ambiance, int mutualAid)
+        public Stats(double productivity, double technicalSkills, double ambiance, double mutualAid)
         {
             Productivity = productivity;
             TechnicalSkills = technicalSkills;
