@@ -43,33 +43,6 @@ namespace KeepCalmAndMIC.Models
 			// hand.CardList = action.GetHandCard(8);
 			Decks.Add(TypeDeck.Hand, new Deck());
 		}
-
-		public int UseActionCardOnADay(Card card, int weekNumber, int dayNumberOfWeek)
-        {
-            return Internship.SetActionOnADay(card, weekNumber, dayNumberOfWeek);
-        }
         
-        public void SetEventOnADay()
-        {
-            // Random => Event?
-            // if (Y) => Number of event ? 1, 2 or 3?
-            // Assign the events 
-        }
-
-        public int GetCurrentWeek()
-        {
-            return Internship.CurrentWeek;
-        }
-
-        public int GetCurrentDayOfTheWeek()
-        {
-            return Internship.CurrentDayOfTheWeek;
-        }
-
-        public Stats NexDay()
-        {
-            return Internship.NextDay();
-        }
-
 	}
 }

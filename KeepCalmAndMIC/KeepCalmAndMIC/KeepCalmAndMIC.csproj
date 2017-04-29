@@ -219,6 +219,7 @@
     <Compile Include="BusinessLayer\DayManagement.cs" />
     <Compile Include="BusinessLayer\DeckManagement.cs" />
     <Compile Include="BusinessLayer\GameManagement.cs" />
+    <Compile Include="BusinessLayer\InternshipManagement.cs" />
     <Compile Include="BusinessLayer\WeekManagement.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
@@ -256,6 +257,7 @@
     <Compile Include="Repository\DayRepository.cs" />
     <Compile Include="Repository\DeckRepository.cs" />
     <Compile Include="Repository\GameRepository.cs" />
+    <Compile Include="Repository\InternshipRepository.cs" />
     <Compile Include="Repository\IRepository.cs" />
     <Compile Include="Repository\UnitOfWork.cs" />
     <Compile Include="Repository\WeekRepository.cs" />
@@ -372,7 +374,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>19787</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
