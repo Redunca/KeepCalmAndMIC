@@ -214,13 +214,15 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="BusinessLayer\BaseManagement.cs" />
+    <Compile Include="BusinessLayer\CardManagement.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ViewModels\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\Card.cs" />
     <Compile Include="Models\Day.cs" />
@@ -228,7 +230,7 @@
     <Compile Include="Models\IBaseModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\IIdentifiable.cs" />
-    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\ViewModels\ManageViewModels.cs" />
     <Compile Include="Models\Game.cs" />
     <Compile Include="Models\Internship.cs" />
     <Compile Include="Models\Stats.cs" />
