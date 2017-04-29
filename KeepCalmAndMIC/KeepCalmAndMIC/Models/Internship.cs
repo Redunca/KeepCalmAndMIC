@@ -15,7 +15,7 @@ namespace KeepCalmAndMIC.Models
 		public DateTime CreatedOn { get; set; }
 		public DateTime ModifiedOn { get; set; }
 
-        public List<Week> WeeksOfTheIntership { get; set; } = new List<Week>();
+        public List<Week> WeeksOfTheInternship { get; set; } = new List<Week>();
         public int CurrentWeek { get; set; }
         public int CurrentDayOfTheWeek { get; set; }
 
@@ -27,7 +27,7 @@ namespace KeepCalmAndMIC.Models
 		{
 			for (int i = 1; i <= numberOfWeek; i++)
 			{
-				WeeksOfTheIntership.Add(new Week());
+				WeeksOfTheInternship.Add(new Week());
 			}
 
 			CurrentWeek = 0;
@@ -36,9 +36,9 @@ namespace KeepCalmAndMIC.Models
 
 		public int SetActionOnADay(Card card, int weekNumber, int dayNumberOfWeek)
         {
-            if(WeeksOfTheIntership.ElementAt(weekNumber).DaysOfTheWeek.ElementAt(dayNumberOfWeek).RemainingHours - card.TimeCostInHour >= 0)
+            if(WeeksOfTheInternship.ElementAt(weekNumber).DaysOfTheWeek.ElementAt(dayNumberOfWeek).RemainingHours - card.TimeCostInHour >= 0)
             {
-                WeeksOfTheIntership.ElementAt(weekNumber).DaysOfTheWeek.ElementAt(dayNumberOfWeek).SelectedCards.Add(card);
+                WeeksOfTheInternship.ElementAt(weekNumber).DaysOfTheWeek.ElementAt(dayNumberOfWeek).SelectedCards.Add(card);
 
                 return 0;
             }
@@ -50,14 +50,14 @@ namespace KeepCalmAndMIC.Models
 
         public void SetEventOnADay(Card card, int weekNumber, int dayNumberOfWeek)
         {
-            WeeksOfTheIntership.ElementAt(weekNumber).DaysOfTheWeek.ElementAt(dayNumberOfWeek).SelectedCards.Add(card);
+            WeeksOfTheInternship.ElementAt(weekNumber).DaysOfTheWeek.ElementAt(dayNumberOfWeek).SelectedCards.Add(card);
         }
 
         public Stats GetStageStats()
         {
             Stats stats = new Stats();
 
-            foreach (Week week in WeeksOfTheIntership)
+            foreach (Week week in WeeksOfTheInternship)
             {
                 Stats tmpStats = week.GetWeekStats();
 
@@ -72,7 +72,7 @@ namespace KeepCalmAndMIC.Models
 
         public Stats GetStatsOfAWeek(int week)
         {
-            return WeeksOfTheStage.ElementAt(week).GetWeekStats();
+            return WeeksOfTheInternship.ElementAt(week).GetWeekStats();
         }
 
         public Stats NextDay()
