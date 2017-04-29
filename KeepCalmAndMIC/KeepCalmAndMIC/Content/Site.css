@@ -22,3 +22,15 @@ select,
 textarea {
     max-width: 280px;
 }
+
+weekActive{
+    background-color: tomato;
+}
+weekInactive{
+    background-color: green;
+}
+stats{
+    padding-right: 30px;
+    padding-left : 30px;
+    background-color : deepskyblue;
+}

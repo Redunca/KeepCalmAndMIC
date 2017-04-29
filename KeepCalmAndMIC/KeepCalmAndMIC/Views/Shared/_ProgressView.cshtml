@@ -1,0 +1,21 @@
+﻿
+
+<div class="container" style='overflow-y:auto'>
+    @{
+        foreach (KeepCalmAndMIC.Models.WeekViewModel w in ViewBag.Weeks)
+        {
+            if (w.IsPassed)
+            {
+                <div class="weekActive">
+                    Html.Label(w.WeekNumber.ToString());
+                </div>
+            }
+            else
+            {
+                <div class="weekInactive">
+                    Html.Label(w.WeekNumber.ToString());
+                </div>
+            }
+        }
+    }
+</div>

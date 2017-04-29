@@ -191,6 +191,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PlayController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -204,6 +205,7 @@
     <Compile Include="Models\Stage.cs" />
     <Compile Include="Models\Stats.cs" />
     <Compile Include="Models\Week.cs" />
+    <Compile Include="Models\WeekViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\CardRepository.cs" />
     <Compile Include="Startup.cs" />
@@ -265,6 +267,11 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Play\Index.cshtml" />
+    <Content Include="Views\Shared\_ProgressView.cshtml" />
+    <Content Include="Views\Shared\_TimeView.cshtml" />
+    <Content Include="Views\Shared\_CardsView.cshtml" />
+    <Content Include="Views\Shared\_LogView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

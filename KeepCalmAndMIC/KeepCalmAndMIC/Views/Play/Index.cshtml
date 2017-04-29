@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<div class="col-md-12">
+    @{
+        Html.Partial("_ProgressView", (object)ViewBag.ProgressViewModel);
+    }
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        @{
+            Html.Partial("_TimeView", (object)ViewBag.TimeViewModel);
+        }
+    </div>
+    <div class="col-md-4">
+        @{
+            Html.Partial("_CardsView", (object)ViewBag.CardsViewModel);
+        }
+
+    </div>
+    <div class="col-md-4">
+        @{
+            Html.Partial("_LogView", (object)ViewBag.LogViewModel);
+        }
+
+    </div>
+</div>
+
