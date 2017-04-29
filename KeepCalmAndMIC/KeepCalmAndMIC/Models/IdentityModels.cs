@@ -18,6 +18,7 @@ namespace KeepCalmAndMIC.Models
         }
     }
 
+<<<<<<< HEAD
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
@@ -31,4 +32,6 @@ namespace KeepCalmAndMIC.Models
             return new ApplicationDbContext();
         }
     }
+=======
+>>>>>>> feature/unitofwork
 }

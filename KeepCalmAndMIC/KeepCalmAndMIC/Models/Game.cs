@@ -9,14 +9,14 @@ namespace KeepCalmAndMIC.Models
     {
         public Game()
         {
-            stage = new Stage(15);
+            stage = new Internship(15);
             EventDeck.FeedDeckEvent(75);
             ActionDeck.FeedDeckAction(600);
             
             HandDeck.CardList = ActionDeck.GetHandCard(8);
         }
 
-        public Stage stage { get; }
+        public Internship stage { get; }
         public Deck EventDeck { get; set; }
         public Deck ActionDeck { get; set; }
         public Deck HandDeck { get; set; }
