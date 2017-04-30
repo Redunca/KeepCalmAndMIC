@@ -51,15 +51,23 @@ namespace KeepCalmAndMIC.Controllers
             playViewModel.statsOfWeekAndDayViewModel.Daily = new Stats(); // ici : generate daily stats
             
             playViewModel.cardsViewModel = new CardsViewModel();
-            Deck handDeck = new Deck();
-            if (game.Decks.TryGetValue(TypeDeck.Hand, out handDeck))
+			Deck handDeck = null;
+			foreach (Deck deck in game.Decks)
+			{
+				if (deck.DeckType.Equals(TypeDeck.Action))
+				{
+					handDeck = deck;
+				}
+			}
+			if (handDeck != null)										
             {
                 playViewModel.cardsViewModel.Cards = handDeck.CardList;
             }
             else
             {
-                // meeeeeerde !!!!
-            }
+				throw new Exception("On code avec le Q");
+				// meeeeeerde !!!!
+			}
 
             GameId = game.Id; // ici : Check if it is the same id as in the db
             LookingWeek = 0;
@@ -98,15 +106,23 @@ namespace KeepCalmAndMIC.Controllers
             playViewModel.statsOfWeekAndDayViewModel.Daily = new Stats(); // ici : generate daily stats
 
             playViewModel.cardsViewModel = new CardsViewModel();
-            Deck handDeck = new Deck();
-            if (game.Decks.TryGetValue(TypeDeck.Hand, out handDeck))
+			Deck handDeck = null;
+			foreach (Deck deck in game.Decks)
+			{
+				if (deck.DeckType.Equals(TypeDeck.Action))
+				{
+					handDeck = deck;
+				}
+			}
+			if (handDeck != null)
             {
                 playViewModel.cardsViewModel.Cards = handDeck.CardList;
             }
             else
             {
-                // meeeeeerde !!!!
-            }
+				throw new Exception("On code avec le Q");
+				// meeeeeerde !!!!
+			}
             
             await UnitOfWork.SaveChangesAsync();
 
