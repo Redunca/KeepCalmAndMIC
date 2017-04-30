@@ -148,10 +148,10 @@ namespace KeepCalmAndMIC.Controllers
             else
             {
                 yesterday = game.Internship.WeeksOfTheInternship.ElementAt(game.Internship.CurrentWeek)
-                .DaysOfTheWeek.ElementAt(game.Internship.CurrentDayOfTheWeek-1);
+					.DaysOfTheWeek.ElementAt(game.Internship.CurrentDayOfTheWeek-1);
             }
             
-            statsOfWeekAndDayViewModel.Daily = ScoreCalculator.UpdateStatsForDay(day.SelectedCards,day.LivingEvents,);
+            statsOfWeekAndDayViewModel.Daily = ScoreCalculator.UpdateStatsForDay(day.SelectedCards,day.LivingEvents,yesterday.DayStats);
 
             return PartialView("_StatsOfWeekAndDay", statsOfWeekAndDayViewModel);
 

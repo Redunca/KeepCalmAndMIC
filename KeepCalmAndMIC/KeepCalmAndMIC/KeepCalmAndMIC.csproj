@@ -229,13 +229,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201704300715052_re_init.cs" />
-    <Compile Include="Migrations\201704300715052_re_init.Designer.cs">
-      <DependentUpon>201704300715052_re_init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201704300859579_mod_momo.cs" />
-    <Compile Include="Migrations\201704300859579_mod_momo.Designer.cs">
-      <DependentUpon>201704300859579_mod_momo.cs</DependentUpon>
+    <Compile Include="Migrations\201704300911384_re_init_2.cs" />
+    <Compile Include="Migrations\201704300911384_re_init_2.Designer.cs">
+      <DependentUpon>201704300911384_re_init_2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ScoreCalculator.cs" />
@@ -364,11 +360,8 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201704300715052_re_init.resx">
-      <DependentUpon>201704300715052_re_init.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201704300859579_mod_momo.resx">
-      <DependentUpon>201704300859579_mod_momo.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201704300911384_re_init_2.resx">
+      <DependentUpon>201704300911384_re_init_2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

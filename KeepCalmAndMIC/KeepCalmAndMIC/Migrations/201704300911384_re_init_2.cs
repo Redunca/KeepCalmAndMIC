@@ -3,7 +3,7 @@ namespace KeepCalmAndMIC.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class re_init : DbMigration
+    public partial class re_init_2 : DbMigration
     {
         public override void Up()
         {
@@ -155,6 +155,7 @@ namespace KeepCalmAndMIC.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
+                        DeckType = c.Int(nullable: false),
                         CreatedOn = c.DateTime(),
                         ModifiedOn = c.DateTime(),
                         GameId = c.Int(nullable: false),

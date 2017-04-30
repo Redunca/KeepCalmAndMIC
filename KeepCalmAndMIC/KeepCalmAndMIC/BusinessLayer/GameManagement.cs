@@ -18,8 +18,15 @@ namespace KeepCalmAndMIC.BusinessLayer
 
             Card card = null;
 
-            Deck actionDeck = new Deck();
-            if (game.Decks.TryGetValue(TypeDeck.Action, out actionDeck))
+			Deck actionDeck = null;
+			foreach (Deck deck in game.Decks)
+			{
+				if (deck.DeckType.Equals(TypeDeck.Action))
+				{
+					actionDeck = deck;
+				}
+			}
+            if (actionDeck != null)
             {
                 card = actionDeck.CardList.First(c => c.Id == cardId);
 				// ici : Remettre une carte dans la main
