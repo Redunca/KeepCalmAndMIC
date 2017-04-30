@@ -14,7 +14,9 @@ namespace KeepCalmAndMIC.BusinessLayer
         public async Task UseActionCardOnADayAsync(int idGame, int cardId, int weekNumber, int dayNumberOfWeek)
         {
             Game game = await UnitOfWork.Games.GetById(idGame, true);
-            Day day = game.Internship.WeeksOfTheInternship.ElementAt(weekNumber).DaysOfTheWeek.ElementAt(dayNumberOfWeek);
+			int weekid = game.Internship.WeeksOfTheInternship.ElementAt(weekNumber).Id;
+			Week week = await UnitOfWork.Weeks.GetById(weekid);
+			Day day = week.DaysOfTheWeek.ElementAt(dayNumberOfWeek);
 
             Card card = null;
 

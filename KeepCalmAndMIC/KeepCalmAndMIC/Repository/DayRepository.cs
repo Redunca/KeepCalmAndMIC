@@ -64,8 +64,6 @@ namespace KeepCalmAndMIC.Repository
 			Day day = Context.Days.FirstOrDefault(d => d.Id == id);
 			day.SelectedCards.Add(card);
 
-			//Context.Days.First(d => d.Id == id).SelectedCards.Add(card);
-
             await Context.SaveChangesAsync();
         }
 
