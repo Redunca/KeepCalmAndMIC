@@ -18,6 +18,14 @@ namespace KeepCalmAndMIC.BusinessLayer
 
             await UnitOfWork.Days.SetActionOnADay(day.Id, card);
         }
+
+        public async Task<int> CreateGame()
+        {
+            Game game = new Game();
+            await UnitOfWork.SaveChangesAsync();
+
+            return game.Id;
+        }
         
         public async Task SetEventOnADay(int idGame, Card card, int weekNumber, int dayNumberOfWeek)
         {

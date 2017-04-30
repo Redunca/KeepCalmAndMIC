@@ -7,6 +7,7 @@ namespace KeepCalmAndMIC.Models.ViewModels
 {
     public class TimeViewModel
     {
-        public DayOfWeek SelectedDay { get; set; }
+        public int SelectedDay { get; set; }
+        public int SelectedWeek { get; set; }
     }
 }

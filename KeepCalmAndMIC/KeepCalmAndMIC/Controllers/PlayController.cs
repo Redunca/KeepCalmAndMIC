@@ -2,41 +2,77 @@
 using KeepCalmAndMIC.Models.ViewModels;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Web;
 
 namespace KeepCalmAndMIC.Controllers
 {
     [Authorize]
-    public class PlayController : Controller
+    public class PlayController : BaseController
     {
-        public static List<WeekViewModel> Weeks { get; set; }
-        public static CardsViewModel CardsViewModel { get; set; }
-        public static DayOfWeek SelectedDay { get; set; }
-        public static int UsedHoursForToday { get; set; }
-        public PlayController()
-        {
-            CardsViewModel = new CardsViewModel();
-        }
+        public static int GameId { get; set; }
+        public static int LookingWeek { get; set; }
+        public static int LookingDay { get; set; }
+        
         // GET: Play
         public ActionResult Index()
         {
-            Weeks = new List<WeekViewModel>();
-            for(int i = 1; i <= 15; i++)
-            {
-                Weeks.Add(new WeekViewModel()
-                {
-                    WeekNumber = i,
-                    IsPassed = (i < 6)
-                });
-            }
-            ViewBag.ProgressViewModel = new ProgressViewModel();
-            ViewBag.TimeViewModel = new TimeViewModel();
-            ViewBag.CardsViewModel = CardsViewModel;
-            ViewBag.TimeViewModel.SelectedDay = SelectedDay;
-            return View();
+            Game game = new Game();
+
+            PlayViewModel playViewModel = new PlayViewModel();
+            playViewModel.IdGame = game.Id;
+
+            playViewModel.timeViewModel = new TimeViewModel();
+            playViewModel.timeViewModel.SelectedWeek = 0;
+            playViewModel.timeViewModel.SelectedDay = 0;
+
+            playViewModel.statsOfWeekAndDayViewModel = new StatsOfWeekAndDayViewModel();
+
+            playViewModel.statsOfWeekAndDayViewModel.Global = new Stats(); // ici : generate global stats
+            playViewModel.statsOfWeekAndDayViewModel.Weekly = new Stats(); // ici : generate Weekly stats
+            playViewModel.statsOfWeekAndDayViewModel.Daily = new Stats(); // ici : generate daily stats
+
+            playViewModel.cardsViewModel = new CardsViewModel();
+            playViewModel.cardsViewModel.Cards.Add(new Card(TypeCard.Action, "Débugging", "", 0, 20, 20, -10, 4, 2, 10)); // ici : Get cards from Deck Hand
+
+
+            GameId = game.Id;
+            LookingWeek = 0;
+            LookingDay = 0;
+
+            return View("Index", playViewModel);
         }
+
+
+        /*
+        public ActionResult GetWeek(int weekNumber)
+        {
+            //return week
+            var ratings = UnitOfWork.Ratings.FindAllByServiceId(idService);
+
+            return PartialView("../Account/_UserComments", ratings);
+
+        }
+
+        public ActionResult GetDay(int weekNumber)
+        {
+            //return week
+            var ratings = UnitOfWork.Ratings.FindAllByServiceId(idService);
+
+            return PartialView("../Account/_UserComments", ratings);
+
+        }
+
+
+        /Play/GetWeek
+        */
+
+
+
+        /*
+
         public ActionResult SelectDayOfWeek(DayOfWeek? day)
         {
             Weeks = new List<WeekViewModel>();
@@ -76,5 +112,9 @@ namespace KeepCalmAndMIC.Controllers
             tempCard.IsSelected = !tempCard.IsSelected;
             return View("Index");
         }
+        */
+
+        /*
+        */
     }
 }

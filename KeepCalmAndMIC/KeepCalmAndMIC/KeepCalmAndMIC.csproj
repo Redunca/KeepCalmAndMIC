@@ -260,7 +260,8 @@
     <Compile Include="Models\Game.cs" />
     <Compile Include="Models\Internship.cs" />
     <Compile Include="Models\Stats.cs" />
-    <Compile Include="Models\ViewModels\ProgressViewModel.cs" />
+    <Compile Include="Models\ViewModels\PlayViewModel.cs" />
+    <Compile Include="Models\ViewModels\StatsOfWeekAndDayViewModel.cs" />
     <Compile Include="Models\ViewModels\TimeViewModel.cs" />
     <Compile Include="Models\Week.cs" />
     <Compile Include="Models\ViewModels\WeekViewModel.cs" />
@@ -357,11 +358,11 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Play\Index.cshtml" />
-    <Content Include="Views\Shared\_ProgressView.cshtml" />
-    <Content Include="Views\Shared\_TimeView.cshtml" />
-    <Content Include="Views\Shared\_CardsView.cshtml" />
+    <Content Include="Views\Play\_CardsView.cshtml" />
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />
+    <Content Include="Views\Play\_ProgressView.cshtml" />
+    <Content Include="Views\Play\_StatsOfWeekAndDay.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
