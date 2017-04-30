@@ -12,13 +12,15 @@ namespace KeepCalmAndMIC.Models
 		public double TechnicalSkills { get; set; }
 		public double Ambiance { get; set; }
 		public double MutualAid { get; set; }
+        public double Production { get; set; }
 
-		public Stats()
+        public Stats()
         {
             Productivity = 0;
             TechnicalSkills = 0;
             Ambiance = 0;
             MutualAid = 0;
+            Production = 0;
         }
 
         public Stats(double productivity, double technicalSkills, double ambiance, double mutualAid)
@@ -27,6 +29,7 @@ namespace KeepCalmAndMIC.Models
             TechnicalSkills = technicalSkills;
             Ambiance = ambiance;
             MutualAid = mutualAid;
+            Production = 0;
         }	
 
 	}

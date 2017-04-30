@@ -245,7 +245,12 @@
     <Compile Include="Migrations\201704291752082_seed_2.Designer.cs">
       <DependentUpon>201704291752082_seed_2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201704300348018_test.cs" />
+    <Compile Include="Migrations\201704300348018_test.Designer.cs">
+      <DependentUpon>201704300348018_test.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\ScoreCalculator.cs" />
     <Compile Include="Models\ViewModels\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\Card.cs" />
@@ -259,7 +264,8 @@
     <Compile Include="Models\Game.cs" />
     <Compile Include="Models\Internship.cs" />
     <Compile Include="Models\Stats.cs" />
-    <Compile Include="Models\ViewModels\ProgressViewModel.cs" />
+    <Compile Include="Models\ViewModels\PlayViewModel.cs" />
+    <Compile Include="Models\ViewModels\StatsOfWeekAndDayViewModel.cs" />
     <Compile Include="Models\ViewModels\TimeViewModel.cs" />
     <Compile Include="Models\Week.cs" />
     <Compile Include="Models\ViewModels\WeekViewModel.cs" />
@@ -356,12 +362,12 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Play\Index.cshtml" />
-    <Content Include="Views\Shared\_ProgressView.cshtml" />
-    <Content Include="Views\Shared\_TimeView.cshtml" />
-    <Content Include="Views\Shared\_CardsView.cshtml" />
+    <Content Include="Views\Play\_CardsView.cshtml" />
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />
     <Content Include="Views\Home\Games.cshtml" />
+    <Content Include="Views\Play\_ProgressView.cshtml" />
+    <Content Include="Views\Play\_StatsOfWeekAndDay.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -382,6 +388,9 @@
     <EmbeddedResource Include="Migrations\201704291752082_seed_2.resx">
       <DependentUpon>201704291752082_seed_2.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704300348018_test.resx">
+      <DependentUpon>201704300348018_test.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -397,7 +406,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>19787</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

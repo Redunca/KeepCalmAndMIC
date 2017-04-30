@@ -40,7 +40,7 @@ namespace KeepCalmAndMIC.Models
         {
             if(WeeksOfTheInternship.ElementAt(weekNumber).DaysOfTheWeek.ElementAt(dayNumberOfWeek).RemainingHours - card.TimeCostInHour >= 0)
             {
-				WeeksOfTheInternship.ElementAt(weekNumber).DaysOfTheWeek.ElementAt(dayNumberOfWeek).SelectedCards.Add(card);
+                WeeksOfTheInternship.ElementAt(weekNumber).DaysOfTheWeek.ElementAt(dayNumberOfWeek).SelectedCards.Add(card);
 
                 return 0;
             }
@@ -52,7 +52,7 @@ namespace KeepCalmAndMIC.Models
 
         public void SetEventOnADay(Card card, int weekNumber, int dayNumberOfWeek)
         {
-			WeeksOfTheInternship.ElementAt(weekNumber).DaysOfTheWeek.ElementAt(dayNumberOfWeek).SelectedCards.Add(card);
+            WeeksOfTheInternship.ElementAt(weekNumber).DaysOfTheWeek.ElementAt(dayNumberOfWeek).SelectedCards.Add(card);
         }
 
         //public Stats GetStageStats()

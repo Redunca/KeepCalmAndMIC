@@ -11,16 +11,16 @@ namespace KeepCalmAndMIC.Repository
     {
         public GameRepository(ApplicationDbContext context) : base(context) { }
 
-		public async Task<List<int>> GetUserScoresSorted(string userId)
-		{
-			return await Context.Games.Where(g => g.PlayerId.Equals(userId))
-				.OrderByDescending(g => g.FinalScore).Select(g => g.FinalScore).ToListAsync();
-		}
+      public async Task<List<int>> GetUserScoresSorted(string userId)
+      {
+        return await Context.Games.Where(g => g.PlayerId.Equals(userId))
+          .OrderByDescending(g => g.FinalScore).Select(g => g.FinalScore).ToListAsync();
+      }
 
-		public async Task<List<int>> GetTopGames(int nbGames)
-		{
-			return await Context.Games.OrderByDescending(g => g.FinalScore).Take(nbGames).Select(g => g.FinalScore).ToListAsync();
-		}
+      public async Task<List<int>> GetTopGames(int nbGames)
+      {
+        return await Context.Games.OrderByDescending(g => g.FinalScore).Take(nbGames).Select(g => g.FinalScore).ToListAsync();
+      }
 
     }
 }
