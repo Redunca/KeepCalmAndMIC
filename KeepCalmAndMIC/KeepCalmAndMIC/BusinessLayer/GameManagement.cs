@@ -24,6 +24,7 @@ namespace KeepCalmAndMIC.BusinessLayer
 				if (deck.DeckType.Equals(TypeDeck.Action))
 				{
 					actionDeck = deck;
+                    break;
 				}
 			}
             if (actionDeck != null)
@@ -32,13 +33,14 @@ namespace KeepCalmAndMIC.BusinessLayer
 				// ici : Remettre une carte dans la main
 
 				await UnitOfWork.Days.SetActionOnADay(day.Id, card);
-				await UnitOfWork.SaveChangesAsync();
+				
 			}
             else
             {
 				throw new Exception("On code avec le Q");
                 // meeeeeerde !!!!
             }
+            await UnitOfWork.SaveChangesAsync();
         }
         
         public async Task SetEventOnADay(int idGame, Card card, int weekNumber, int dayNumberOfWeek)
@@ -69,6 +71,7 @@ namespace KeepCalmAndMIC.BusinessLayer
 					throw new Exception("On code avec le Q");
 					// meeeeeerde !!!!
 				}
+                await UnitOfWork.SaveChangesAsync();
             }
         }
 
@@ -122,7 +125,7 @@ namespace KeepCalmAndMIC.BusinessLayer
 				throw new Exception("On code avec le Q");
 				// meeeeeerde !!!!
 			}
-            
+            await UnitOfWork.SaveChangesAsync();
             return await internshipManagement.NextDayAsync(game.Internship.Id);
         }
 
