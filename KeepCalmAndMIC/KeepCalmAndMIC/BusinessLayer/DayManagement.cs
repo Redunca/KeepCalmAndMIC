@@ -10,6 +10,5 @@ namespace KeepCalmAndMIC.BusinessLayer
     {
         public DayManagement (IOwinContext owinContext) : base(owinContext) { }
 
-
     }
 }

@@ -13,8 +13,8 @@ namespace KeepCalmAndMIC.Repository
 
 		public async Task<Game> GetById(int id, bool include)
 		{
-            return await Context.Games.Include(g => g.Internship).Include(g => g.Player).Include(g => g.Decks)
-                .Include("Internship.WeeksOfTheInternship")
+			return await Context.Games.Include(g => g.Player).Include(g => g.Internship).Include("Internship.WeeksOfTheInternship")
+				.Include(g => g.Decks).Include("Decks.CardList")
 				.Where(g => g.Id == id).FirstOrDefaultAsync();
 		}
 

@@ -20,10 +20,10 @@ namespace KeepCalmAndMIC.Models
 
 		public Week()
         {
-            for(int i = 0; i <= 4; i++)
-            {
-                DaysOfTheWeek.Add(new Day());
-            }
+            //for(int i = 0; i <= 4; i++)
+            //{
+            //    DaysOfTheWeek.Add(new Day());
+            //}
         }
     }
     

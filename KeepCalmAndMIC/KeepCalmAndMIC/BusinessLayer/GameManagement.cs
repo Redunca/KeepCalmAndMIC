@@ -18,18 +18,18 @@ namespace KeepCalmAndMIC.BusinessLayer
 
             Card card = null;
 
-			Deck actionDeck = null;
+			Deck handDeck = null;
 			foreach (Deck deck in game.Decks)
 			{
-				if (deck.DeckType.Equals(TypeDeck.Action))
+				if (deck.DeckType.Equals(TypeDeck.Hand))
 				{
 					actionDeck = deck;
                     break;
 				}
 			}
-            if (actionDeck != null)
+            if (handDeck != null)
             {
-                card = actionDeck.CardList.First(c => c.Id == cardId);
+                card = handDeck.CardList.First(c => c.Id == cardId);
 				// ici : Remettre une carte dans la main
 
 				await UnitOfWork.Days.SetActionOnADay(day.Id, card);
@@ -133,8 +133,8 @@ namespace KeepCalmAndMIC.BusinessLayer
         {
             Random rnd = new Random();
 
-			Internship intern = new Internship(15, game.Id);
-			bool ok = await (OwinContext.Get<InternshipManagement>()).AddInternship(intern);
+			Internship intern = new Internship(game.Id);
+			intern = await (OwinContext.Get<InternshipManagement>()).AddInternship(intern);
 			game.Internship = intern;
             
             Deck gameaction = new Deck();
