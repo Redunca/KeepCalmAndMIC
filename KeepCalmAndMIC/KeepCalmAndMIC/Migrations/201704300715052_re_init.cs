@@ -3,7 +3,7 @@ namespace KeepCalmAndMIC.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class init : DbMigration
+    public partial class re_init : DbMigration
     {
         public override void Up()
         {
@@ -12,24 +12,26 @@ namespace KeepCalmAndMIC.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        CreatedOn = c.DateTime(nullable: false),
-                        ModifiedOn = c.DateTime(nullable: false),
                         CardType = c.Int(nullable: false),
+                        CreatedOn = c.DateTime(),
+                        ModifiedOn = c.DateTime(),
                         Name = c.String(),
                         Description = c.String(),
-                        EffectOnProduction = c.Int(nullable: false),
-                        EffectOnMutualAid = c.Int(nullable: false),
-                        EffectOnTechnicalSkills = c.Int(nullable: false),
-                        EffectOnAmbiance = c.Int(nullable: false),
+                        EffectOnProduction = c.Double(nullable: false),
+                        EffectOnMutualAid = c.Double(nullable: false),
+                        EffectOnTechnicalSkills = c.Double(nullable: false),
+                        EffectOnAmbiance = c.Double(nullable: false),
+                        EffectOnProductivity = c.Double(nullable: false),
                         TimeCostInHour = c.Int(nullable: false),
+                        EnergyCost = c.Int(nullable: false),
                         DayActionId = c.Int(),
                         DayEventId = c.Int(),
-                        DeckId = c.Int(nullable: false),
+                        DeckId = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Days", t => t.DayEventId)
                 .ForeignKey("dbo.Days", t => t.DayActionId)
-                .ForeignKey("dbo.Decks", t => t.DeckId, cascadeDelete: true)
+                .ForeignKey("dbo.Decks", t => t.DeckId)
                 .Index(t => t.DayActionId)
                 .Index(t => t.DayEventId)
                 .Index(t => t.DeckId);
@@ -39,8 +41,8 @@ namespace KeepCalmAndMIC.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        CreatedOn = c.DateTime(nullable: false),
-                        ModifiedOn = c.DateTime(nullable: false),
+                        CreatedOn = c.DateTime(),
+                        ModifiedOn = c.DateTime(),
                         RemainingHours = c.Int(nullable: false),
                         WeekId = c.Int(nullable: false),
                     })
@@ -53,8 +55,8 @@ namespace KeepCalmAndMIC.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        CreatedOn = c.DateTime(nullable: false),
-                        ModifiedOn = c.DateTime(nullable: false),
+                        CreatedOn = c.DateTime(),
+                        ModifiedOn = c.DateTime(),
                         InternshipId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
@@ -65,27 +67,26 @@ namespace KeepCalmAndMIC.Migrations
                 "dbo.Internships",
                 c => new
                     {
-                        Id = c.Int(nullable: false, identity: true),
-                        CreatedOn = c.DateTime(nullable: false),
-                        ModifiedOn = c.DateTime(nullable: false),
+                        Id = c.Int(nullable: false),
+                        CreatedOn = c.DateTime(),
+                        ModifiedOn = c.DateTime(),
                         CurrentWeek = c.Int(nullable: false),
                         CurrentDayOfTheWeek = c.Int(nullable: false),
-                        GameId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Games", t => t.GameId, cascadeDelete: true)
-                .Index(t => t.GameId);
+                .ForeignKey("dbo.Games", t => t.Id)
+                .Index(t => t.Id);
             
             CreateTable(
                 "dbo.Games",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        CreatedOn = c.DateTime(nullable: false),
-                        ModifiedOn = c.DateTime(nullable: false),
+                        CreatedOn = c.DateTime(),
+                        ModifiedOn = c.DateTime(),
                         PlayerId = c.String(maxLength: 128),
-                        InternshipId = c.Int(nullable: false),
                         InProgress = c.Boolean(nullable: false),
+                        FinalScore = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.AspNetUsers", t => t.PlayerId)
@@ -154,8 +155,8 @@ namespace KeepCalmAndMIC.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        CreatedOn = c.DateTime(nullable: false),
-                        ModifiedOn = c.DateTime(nullable: false),
+                        CreatedOn = c.DateTime(),
+                        ModifiedOn = c.DateTime(),
                         GameId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
@@ -180,7 +181,7 @@ namespace KeepCalmAndMIC.Migrations
             DropForeignKey("dbo.Decks", "GameId", "dbo.Games");
             DropForeignKey("dbo.Cards", "DeckId", "dbo.Decks");
             DropForeignKey("dbo.Weeks", "InternshipId", "dbo.Internships");
-            DropForeignKey("dbo.Internships", "GameId", "dbo.Games");
+            DropForeignKey("dbo.Internships", "Id", "dbo.Games");
             DropForeignKey("dbo.AspNetUserRoles", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.Games", "PlayerId", "dbo.AspNetUsers");
@@ -196,7 +197,7 @@ namespace KeepCalmAndMIC.Migrations
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
             DropIndex("dbo.Games", new[] { "PlayerId" });
-            DropIndex("dbo.Internships", new[] { "GameId" });
+            DropIndex("dbo.Internships", new[] { "Id" });
             DropIndex("dbo.Weeks", new[] { "InternshipId" });
             DropIndex("dbo.Days", new[] { "WeekId" });
             DropIndex("dbo.Cards", new[] { "DeckId" });

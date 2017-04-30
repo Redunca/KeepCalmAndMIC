@@ -13,7 +13,7 @@ namespace KeepCalmAndMIC.BusinessLayer
         
         public async Task UseActionCardOnADayAsync(int idGame, int cardId, int weekNumber, int dayNumberOfWeek)
         {
-            Game game = await UnitOfWork.Games.GetById(idGame);
+            Game game = await UnitOfWork.Games.GetById(idGame, true);
             Day day = game.Internship.WeeksOfTheInternship.ElementAt(weekNumber).DaysOfTheWeek.ElementAt(dayNumberOfWeek);
 
             Card card = null;
@@ -99,10 +99,10 @@ namespace KeepCalmAndMIC.BusinessLayer
 
         public async Task StartGame(Game game)
         {
-            Random rnd = new Random();										  
-            
-            game.Internship.CurrentWeek = 0;
-            game.Internship.CurrentDayOfTheWeek = 0;
+            Random rnd = new Random();
+
+			Internship intern = new Internship(15, game.Id);
+			game.Internship = intern;
             
             Deck gameaction = new Deck();
             gameaction.CardList = await UnitOfWork.Cards.GetRandomCardsAsync(TypeCard.Action, 600);

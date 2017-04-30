@@ -10,7 +10,7 @@ namespace KeepCalmAndMIC.Models
 {
     public class Internship : IBaseModel
     {
-		[Key]
+		[Key, ForeignKey("Game")]
 		public int Id { get; set; }
 		public DateTime? CreatedOn { get; set; }
 		public DateTime? ModifiedOn { get; set; }
@@ -19,14 +19,16 @@ namespace KeepCalmAndMIC.Models
         public int CurrentWeek { get; set; }
         public int CurrentDayOfTheWeek { get; set; }
 
-		public int GameId { get; set; }
-		[ForeignKey("GameId")]
+		//public int GameId { get; set; }
+		//[ForeignKey("GameId")]
 		public Game Game { get; set; }
 
 		public Internship() { }
 
-		public Internship(int numberOfWeek)
+		public Internship(int numberOfWeek, int gameId)
 		{
+			this.Id = gameId;
+
 			for (int i = 1; i <= numberOfWeek; i++)
 			{
 				WeeksOfTheInternship.Add(new Week());

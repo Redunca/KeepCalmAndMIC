@@ -30,6 +30,7 @@ namespace KeepCalmAndMIC.Controllers
             GameManagement gameManagement = new GameManagement(HttpContext.GetOwinContext());
 
             Game game = new Game();
+			game.Player = UnitOfWork.Users.GetByName(User.Identity.Name);
 
 			game = await UnitOfWork.Games.Add(game);
 			await UnitOfWork.SaveChangesAsync();
