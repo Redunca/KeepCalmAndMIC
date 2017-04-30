@@ -15,13 +15,15 @@ namespace KeepCalmAndMIC.Repository
         {
             Random rnd = new Random();
             List<Card> randomCards = new List<Card>();
-            List<Card> BddCard = Context.Cards.Where(c => c.CardType == typeCard).ToList();
+
+            List<CardTemplate> BddCard = Context.CardTemplates.Where(c => c.CardType == typeCard).ToList();
+
             int numberOfRows = BddCard.Count();
 
             for (int i = 1; i <= numberOfCards; i++)
             {
-                Card card = BddCard.ElementAt(rnd.Next(0, numberOfRows));
-                randomCards.Add(card);
+                CardTemplate card = BddCard.ElementAt(rnd.Next(0, numberOfRows));
+                randomCards.Add(new Card(card));
             }
 
             await Context.SaveChangesAsync();

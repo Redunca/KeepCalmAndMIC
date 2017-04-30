@@ -26,6 +26,7 @@ namespace KeepCalmAndMIC.Models
 		}
 														   
 		public DbSet<Card> Cards { get; set; }
+		public DbSet<CardTemplate> CardTemplates { get; set; }
 		public DbSet<Day> Days { get; set; }
 		public DbSet<Deck> Decks { get; set; }
 		public DbSet<Game> Games { get; set; }

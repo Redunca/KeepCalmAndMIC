@@ -42,27 +42,19 @@ namespace KeepCalmAndMIC.Models
 
 		public Card() { }
 
-		public Card(TypeCard typeCard, string name, string description, double effectOnProductivity, double effectOnMutualAid,
-			double effectOnTechnicalSkills, double effectOnAmbiance, int timeCost, int energyCost, double effectOnProduction = 0)
+		public Card(CardTemplate fromTemplate)
 		{
-			CardType = typeCard;
-			Name = name;
-			Description = description;
-			EffectOnProduction = effectOnProduction;
-			EffectOnMutualAid = effectOnMutualAid;
-			EffectOnTechnicalSkills = effectOnTechnicalSkills;
-			EffectOnAmbiance = effectOnAmbiance;
-			TimeCostInHour = timeCost;
-			EnergyCost = energyCost;
-			EffectOnProductivity = effectOnProductivity;
+			this.Name = fromTemplate.Name;
+			this.Description = fromTemplate.Description;
+			this.TimeCostInHour = fromTemplate.TimeCostInHour;
+			this.EnergyCost = fromTemplate.EnergyCost;
+			this.EffectOnAmbiance = fromTemplate.EffectOnAmbiance;
+			this.EffectOnMutualAid = fromTemplate.EffectOnMutualAid;
+			this.EffectOnProduction = fromTemplate.EffectOnProduction;
+			this.EffectOnProductivity = fromTemplate.EffectOnProductivity;
+			this.EffectOnTechnicalSkills = fromTemplate.EffectOnTechnicalSkills;
 		}
 
 	}
-
-    public enum TypeCard
-    {
-        Event,
-        Action
-    }
     
 }

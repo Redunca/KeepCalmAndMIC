@@ -17,22 +17,16 @@ namespace KeepCalmAndMIC.Models
 		public string PlayerId { get; set; }
 		[ForeignKey("PlayerId")]
 		public ApplicationUser Player { get; set; }
-
-		//public int InternshipId { get; set; }
-		//[ForeignKey("InternshipId")]
+									  
 		public Internship Internship { get; set; }
 
-		public Dictionary<TypeDeck, Deck> Decks { get; set; }
+		public List<Deck> Decks { get; set; }
 		
 		public bool InProgress { get; set; }
 
 		public int FinalScore { get; set; }
 
-		public Game()
-		{
-			//Internship = new Internship(15);
-			Decks = new Dictionary<TypeDeck, Deck>();
-        }
+		public Game() { }
         
 	}
 }

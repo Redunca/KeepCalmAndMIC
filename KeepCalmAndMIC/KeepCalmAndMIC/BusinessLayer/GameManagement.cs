@@ -18,8 +18,15 @@ namespace KeepCalmAndMIC.BusinessLayer
 
             Card card = null;
 
-            Deck actionDeck = new Deck();
-            if (game.Decks.TryGetValue(TypeDeck.Action, out actionDeck))
+			Deck actionDeck = null;
+			foreach (Deck deck in game.Decks)
+			{
+				if (deck.DeckType.Equals(TypeDeck.Action))
+				{
+					actionDeck = deck;
+				}
+			}
+            if (actionDeck != null)
             {
                 card = actionDeck.CardList.First(c => c.Id == cardId);
 				// ici : Remettre une carte dans la main
@@ -42,10 +49,16 @@ namespace KeepCalmAndMIC.BusinessLayer
             if(number > 0)
             {
                 Game game = await UnitOfWork.Games.GetById(idGame);
-                Deck eventDeck = new Deck();
-
-                if(game.Decks.TryGetValue(TypeDeck.Event, out eventDeck))
-                {
+                Deck eventDeck = null;
+				foreach (Deck deck in game.Decks)
+				{
+					if (deck.DeckType.Equals(TypeDeck.Action))
+					{
+						eventDeck = deck;
+					}
+				}
+				if (eventDeck != null)
+				{
                     for (int i = 0; i < number; i++)
                     {
                          game.Internship.WeeksOfTheInternship.ElementAt(weekNumber).DaysOfTheWeek.ElementAt(dayNumberOfWeek).LivingEvents.Add(await UnitOfWork.Decks.GetARandomCard(eventDeck.Id));
@@ -53,8 +66,9 @@ namespace KeepCalmAndMIC.BusinessLayer
                 }
                 else
                 {
-                    // meeeeeerde !!!!
-                }
+					throw new Exception("On code avec le Q");
+					// meeeeeerde !!!!
+				}
             }
         }
 
@@ -75,24 +89,39 @@ namespace KeepCalmAndMIC.BusinessLayer
             Game game = await UnitOfWork.Games.GetById(id);
             InternshipManagement internshipManagement = OwinContext.Get<InternshipManagement>();
 
-            Deck handDeck = new Deck();
-            Deck actionDeck = new Deck();
-
-            if (game.Decks.TryGetValue(TypeDeck.Hand, out handDeck))
+			Deck handDeck = null;
+			foreach (Deck deck in game.Decks)
+			{
+				if (deck.DeckType.Equals(TypeDeck.Action))
+				{
+					handDeck = deck;
+				}
+			}
+			if (handDeck != null)
             {
-                if (game.Decks.TryGetValue(TypeDeck.Action, out actionDeck))
+				Deck actionDeck = null;
+				foreach (Deck deck in game.Decks)
+				{
+					if (deck.DeckType.Equals(TypeDeck.Action))
+					{
+						actionDeck = deck;
+					}
+				}
+				if (actionDeck != null)
                 {
                     handDeck.CardList = await UnitOfWork.Decks.GetHandCard(actionDeck.Id, 8);
                 }
                 else
                 {
-                    // meeeeeerde !!!!
-                }
+					throw new Exception("On code avec le Q");
+					// meeeeeerde !!!!
+				}
             }
             else
             {
-                // meeeeeerde !!!!
-            }
+				throw new Exception("On code avec le Q");
+				// meeeeeerde !!!!
+			}
             
             return await internshipManagement.NextDayAsync(game.Internship.Id);
         }
@@ -106,12 +135,15 @@ namespace KeepCalmAndMIC.BusinessLayer
 			game.Internship = intern;
             
             Deck gameaction = new Deck();
+			gameaction.DeckType = TypeDeck.Action;
             gameaction.CardList = await UnitOfWork.Cards.GetRandomCardsAsync(TypeCard.Action, 600);
 
             Deck gameevents = new Deck();
+			gameevents.DeckType = TypeDeck.Event;
             gameevents.CardList = await UnitOfWork.Cards.GetRandomCardsAsync(TypeCard.Event, 75);
 
             Deck gamehand = new Deck();
+			gamehand.DeckType = TypeDeck.Hand;
 
             int numberOfRows = gameaction.CardList.Count();
             for (int i = 0; i < 8; i++)
@@ -123,9 +155,10 @@ namespace KeepCalmAndMIC.BusinessLayer
 				gamehand.CardList.Add(card);
             }
 
-            game.Decks.Add(TypeDeck.Action, gameaction);
-            game.Decks.Add(TypeDeck.Event, gameevents);
-            game.Decks.Add(TypeDeck.Hand, gamehand);
+			game.Decks = new System.Collections.Generic.List<Deck>();
+            game.Decks.Add(gameaction);
+            game.Decks.Add(gameevents);
+            game.Decks.Add(gamehand);
             
             await UnitOfWork.SaveChangesAsync();
         }

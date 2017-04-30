@@ -3,7 +3,7 @@ namespace KeepCalmAndMIC.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class re_init : DbMigration
+    public partial class re_init_3 : DbMigration
     {
         public override void Up()
         {
@@ -93,6 +93,20 @@ namespace KeepCalmAndMIC.Migrations
                 .Index(t => t.PlayerId);
             
             CreateTable(
+                "dbo.Decks",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        DeckType = c.Int(nullable: false),
+                        CreatedOn = c.DateTime(),
+                        ModifiedOn = c.DateTime(),
+                        GameId = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Games", t => t.GameId, cascadeDelete: true)
+                .Index(t => t.GameId);
+            
+            CreateTable(
                 "dbo.AspNetUsers",
                 c => new
                     {
@@ -151,17 +165,22 @@ namespace KeepCalmAndMIC.Migrations
                 .Index(t => t.RoleId);
             
             CreateTable(
-                "dbo.Decks",
+                "dbo.CardTemplates",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        CreatedOn = c.DateTime(),
-                        ModifiedOn = c.DateTime(),
-                        GameId = c.Int(nullable: false),
+                        CardType = c.Int(nullable: false),
+                        Name = c.String(),
+                        Description = c.String(),
+                        EffectOnProduction = c.Double(nullable: false),
+                        EffectOnMutualAid = c.Double(nullable: false),
+                        EffectOnTechnicalSkills = c.Double(nullable: false),
+                        EffectOnAmbiance = c.Double(nullable: false),
+                        EffectOnProductivity = c.Double(nullable: false),
+                        TimeCostInHour = c.Int(nullable: false),
+                        EnergyCost = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Games", t => t.GameId, cascadeDelete: true)
-                .Index(t => t.GameId);
+                .PrimaryKey(t => t.Id);
             
             CreateTable(
                 "dbo.AspNetRoles",
@@ -178,24 +197,24 @@ namespace KeepCalmAndMIC.Migrations
         public override void Down()
         {
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
-            DropForeignKey("dbo.Decks", "GameId", "dbo.Games");
-            DropForeignKey("dbo.Cards", "DeckId", "dbo.Decks");
             DropForeignKey("dbo.Weeks", "InternshipId", "dbo.Internships");
             DropForeignKey("dbo.Internships", "Id", "dbo.Games");
             DropForeignKey("dbo.AspNetUserRoles", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.Games", "PlayerId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
+            DropForeignKey("dbo.Decks", "GameId", "dbo.Games");
+            DropForeignKey("dbo.Cards", "DeckId", "dbo.Decks");
             DropForeignKey("dbo.Days", "WeekId", "dbo.Weeks");
             DropForeignKey("dbo.Cards", "DayActionId", "dbo.Days");
             DropForeignKey("dbo.Cards", "DayEventId", "dbo.Days");
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
-            DropIndex("dbo.Decks", new[] { "GameId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
+            DropIndex("dbo.Decks", new[] { "GameId" });
             DropIndex("dbo.Games", new[] { "PlayerId" });
             DropIndex("dbo.Internships", new[] { "Id" });
             DropIndex("dbo.Weeks", new[] { "InternshipId" });
@@ -204,11 +223,12 @@ namespace KeepCalmAndMIC.Migrations
             DropIndex("dbo.Cards", new[] { "DayEventId" });
             DropIndex("dbo.Cards", new[] { "DayActionId" });
             DropTable("dbo.AspNetRoles");
-            DropTable("dbo.Decks");
+            DropTable("dbo.CardTemplates");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");
             DropTable("dbo.AspNetUsers");
+            DropTable("dbo.Decks");
             DropTable("dbo.Games");
             DropTable("dbo.Internships");
             DropTable("dbo.Weeks");

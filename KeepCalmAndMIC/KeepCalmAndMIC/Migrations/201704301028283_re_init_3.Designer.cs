@@ -7,13 +7,13 @@ namespace KeepCalmAndMIC.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class mod_momo : IMigrationMetadata
+    public sealed partial class re_init_3 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(mod_momo));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(re_init_3));
         
         string IMigrationMetadata.Id
         {
-            get { return "201704300859579_mod_momo"; }
+            get { return "201704301028283_re_init_3"; }
         }
         
         string IMigrationMetadata.Source
