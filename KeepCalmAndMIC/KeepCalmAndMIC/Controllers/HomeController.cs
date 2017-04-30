@@ -23,8 +23,8 @@ namespace KeepCalmAndMIC.Controllers
 			Dictionary<string, List<int>> scores = new Dictionary<string, List<int>>();
 			scores.Add("userGames", userGames);
 			scores.Add("topGames", topGames);
-
-			return View(scores);
+            await UnitOfWork.SaveChangesAsync();
+            return View(scores);
 		}
 
 		public ActionResult About()
