@@ -36,7 +36,8 @@ namespace KeepCalmAndMIC.Models
 		{
 			base.OnModelCreating(modelBuilder);
 			modelBuilder.Entity<Day>().HasMany<Card>(d => d.SelectedCards).WithOptional(c => c.DayAction);
-			modelBuilder.Entity<Day>().HasMany<Card>(d => d.LivingEvents).WithOptional(c => c.DayEvent);							   
+			modelBuilder.Entity<Day>().HasMany<Card>(d => d.LivingEvents).WithOptional(c => c.DayEvent);
+			//modelBuilder.Entity<Game>().HasOptional<Internship>(g => g.Internship).WithOptionalPrincipal(i => i.Game);							   
 		}
 
 	}

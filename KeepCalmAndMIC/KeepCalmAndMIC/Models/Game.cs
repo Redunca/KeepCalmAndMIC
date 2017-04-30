@@ -20,7 +20,7 @@ namespace KeepCalmAndMIC.Models
 
 		public int InternshipId { get; set; }
 		[ForeignKey("InternshipId")]
-		public Internship Internship { get; }
+		public Internship Internship { get; set; }
 
 		public Dictionary<TypeDeck, Deck> Decks { get; set; }
 		

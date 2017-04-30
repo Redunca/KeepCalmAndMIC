@@ -94,17 +94,15 @@ namespace KeepCalmAndMIC.BusinessLayer
                 // meeeeeerde !!!!
             }
             
-            return await internshipManagement.NextDayAsync(game.InternshipId);
+            return await internshipManagement.NextDayAsync(game.Internship.Id);
         }
 
         public async Task StartGame(Game game)
         {
-            Random rnd = new Random();
-            GameManagement gameManagement = OwinContext.Get<GameManagement>();
+            Random rnd = new Random();										  
             
-            Internship internship = new Internship();
-            internship.CurrentWeek = 0;
-            internship.CurrentDayOfTheWeek = 0;
+            game.Internship.CurrentWeek = 0;
+            game.Internship.CurrentDayOfTheWeek = 0;
             
             Deck gameaction = new Deck();
             gameaction.CardList = await UnitOfWork.Cards.GetRandomCardsAsync(TypeCard.Action, 600);
@@ -114,13 +112,14 @@ namespace KeepCalmAndMIC.BusinessLayer
 
             Deck gamehand = new Deck();
 
-
             int numberOfRows = gameaction.CardList.Count();
-
             for (int i = 0; i < 8; i++)
             {
-                Card card = gameaction.CardList.ElementAt(rnd.Next(0, numberOfRows));
-                gamehand.CardList.Add(card);
+				int position = rnd.Next(0, numberOfRows);
+				Card card = gameaction.CardList.ElementAt(position);
+				gameaction.CardList.RemoveAt(position);
+				numberOfRows -= 1;
+				gamehand.CardList.Add(card);
             }
 
             game.Decks.Add(TypeDeck.Action, gameaction);

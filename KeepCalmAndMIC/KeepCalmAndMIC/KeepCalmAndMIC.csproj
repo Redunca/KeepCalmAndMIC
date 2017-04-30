@@ -249,6 +249,14 @@
     <Compile Include="Migrations\201704300348018_test.Designer.cs">
       <DependentUpon>201704300348018_test.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201704300547395_dev.cs" />
+    <Compile Include="Migrations\201704300547395_dev.Designer.cs">
+      <DependentUpon>201704300547395_dev.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704300633164_dev_2.cs" />
+    <Compile Include="Migrations\201704300633164_dev_2.Designer.cs">
+      <DependentUpon>201704300633164_dev_2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ScoreCalculator.cs" />
     <Compile Include="Models\ViewModels\AccountViewModels.cs" />
@@ -390,6 +398,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201704300348018_test.resx">
       <DependentUpon>201704300348018_test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704300547395_dev.resx">
+      <DependentUpon>201704300547395_dev.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704300633164_dev_2.resx">
+      <DependentUpon>201704300633164_dev_2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
