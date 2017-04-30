@@ -155,6 +155,7 @@ namespace KeepCalmAndMIC.BusinessLayer
 				gamehand.CardList.Add(card);
             }
 
+			game.Decks = new System.Collections.Generic.List<Deck>();
             game.Decks.Add(gameaction);
             game.Decks.Add(gameevents);
             game.Decks.Add(gamehand);
