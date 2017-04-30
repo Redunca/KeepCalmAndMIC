@@ -30,8 +30,12 @@ namespace KeepCalmAndMIC.Controllers
             GameManagement gameManagement = new GameManagement(HttpContext.GetOwinContext());
 
             Game game = new Game();
-            
-            await gameManagement.StartGame(game);
+			game.Player = UnitOfWork.Users.GetByName(User.Identity.Name);
+
+			game = await UnitOfWork.Games.Add(game);
+			await UnitOfWork.SaveChangesAsync();
+
+			await gameManagement.StartGame(game);
 
             PlayViewModel playViewModel = new PlayViewModel();
             playViewModel.IdGame = game.Id;
@@ -56,8 +60,6 @@ namespace KeepCalmAndMIC.Controllers
             {
                 // meeeeeerde !!!!
             }
-
-            await UnitOfWork.SaveChangesAsync();
 
             GameId = game.Id; // ici : Check if it is the same id as in the db
             LookingWeek = 0;

@@ -229,25 +229,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201704290946122_init.cs" />
-    <Compile Include="Migrations\201704290946122_init.Designer.cs">
-      <DependentUpon>201704290946122_init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201704291613478_mod.cs" />
-    <Compile Include="Migrations\201704291613478_mod.Designer.cs">
-      <DependentUpon>201704291613478_mod.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201704291748584_seed.cs" />
-    <Compile Include="Migrations\201704291748584_seed.Designer.cs">
-      <DependentUpon>201704291748584_seed.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201704291752082_seed_2.cs" />
-    <Compile Include="Migrations\201704291752082_seed_2.Designer.cs">
-      <DependentUpon>201704291752082_seed_2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201704300348018_test.cs" />
-    <Compile Include="Migrations\201704300348018_test.Designer.cs">
-      <DependentUpon>201704300348018_test.cs</DependentUpon>
+    <Compile Include="Migrations\201704300715052_re_init.cs" />
+    <Compile Include="Migrations\201704300715052_re_init.Designer.cs">
+      <DependentUpon>201704300715052_re_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ScoreCalculator.cs" />
@@ -376,20 +360,8 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201704290946122_init.resx">
-      <DependentUpon>201704290946122_init.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201704291613478_mod.resx">
-      <DependentUpon>201704291613478_mod.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201704291748584_seed.resx">
-      <DependentUpon>201704291748584_seed.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201704291752082_seed_2.resx">
-      <DependentUpon>201704291752082_seed_2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201704300348018_test.resx">
-      <DependentUpon>201704300348018_test.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201704300715052_re_init.resx">
+      <DependentUpon>201704300715052_re_init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
