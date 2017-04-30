@@ -16,7 +16,8 @@ namespace KeepCalmAndMIC.Models
 		public List<Card> LivingEvents { get; set; } = new List<Card>();
 
 		public int RemainingHours { get; set; }
-
+        [NotMapped]
+        public Stats DayStats { get; set; }
 		public int WeekId { get; set; }
 		[ForeignKey("WeekId")]
 		public Week Week { get; set; }
@@ -24,6 +25,14 @@ namespace KeepCalmAndMIC.Models
 		public Day()
         {
             RemainingHours = 8;
+            DayStats = new Stats()
+            {
+                Ambiance = 0,
+                MutualAid = 0,
+                Production = 0,
+                Productivity = 0,
+                TechnicalSkills = 0
+            };
         }
 	}
 }

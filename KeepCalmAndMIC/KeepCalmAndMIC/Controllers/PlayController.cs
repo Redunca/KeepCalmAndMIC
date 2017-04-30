@@ -123,20 +123,35 @@ namespace KeepCalmAndMIC.Controllers
             statsOfWeekAndDayViewModel.Global = new Stats(); // ici : generate global stats
             statsOfWeekAndDayViewModel.Weekly = new Stats(); // ici : generate Weekly stats
             statsOfWeekAndDayViewModel.Daily = new Stats(); // ici : generate daily stats
-            
             return PartialView("_StatsOfWeekAndDay", statsOfWeekAndDayViewModel);
         }
 
         public ActionResult GetDay(int dayNumber)
         {
             LookingDay = dayNumber;
-
+            GameManagement gameManagement = new GameManagement(HttpContext.GetOwinContext());
+            Game game = UnitOfWork.Games.GetById(GameId).Result;
             StatsOfWeekAndDayViewModel statsOfWeekAndDayViewModel = new StatsOfWeekAndDayViewModel();
 
             /* générer les stats sur base de (LookingWeek, LookingDay) */
             statsOfWeekAndDayViewModel.Global = new Stats(); // ici : generate global stats
             statsOfWeekAndDayViewModel.Weekly = new Stats(); // ici : generate Weekly stats
             statsOfWeekAndDayViewModel.Daily = new Stats(); // ici : generate daily stats
+            var day = game.Internship.WeeksOfTheInternship.ElementAt(game.Internship.CurrentWeek)
+                .DaysOfTheWeek.ElementAt(game.Internship.CurrentDayOfTheWeek);
+            Day yesterday;
+            if (game.Internship.CurrentDayOfTheWeek == 0)
+            {
+                yesterday = game.Internship.WeeksOfTheInternship.ElementAt(game.Internship.CurrentWeek-1)
+                .DaysOfTheWeek.ElementAt(4);
+            }
+            else
+            {
+                yesterday = game.Internship.WeeksOfTheInternship.ElementAt(game.Internship.CurrentWeek)
+                .DaysOfTheWeek.ElementAt(game.Internship.CurrentDayOfTheWeek-1);
+            }
+            
+            statsOfWeekAndDayViewModel.Daily = ScoreCalculator.UpdateStatsForDay(day.SelectedCards,day.LivingEvents,);
 
             return PartialView("_StatsOfWeekAndDay", statsOfWeekAndDayViewModel);
 
