@@ -1,6 +1,7 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    background-image:url(/Ressources/BG.jpg);
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -45,4 +46,35 @@ dayInformations{
 
 .selected {
     border: 2px solid Blue;
+}
+
+.greyBackgroundColor {
+    background-color: #eee;
+    
+    
+}
+.minHeight210 {
+    min-height: 210px;
+    margin-right: 20px;
+}
+.scoreboard{
+    min-height:250px;
+}
+.box1{
+    background-image: url(/Ressources/Box1.jpg);
+    padding : 12px;
+    background-size:cover;
+    background-repeat:round;
+}
+.box2 {
+    padding: 12px;
+    background-size: cover;
+    background-repeat: round;
+    background-image: url(/Ressources/Box2.jpg);
+}
+.Menu {
+    padding: 12px;
+    background-size: cover;
+    background-repeat: round;
+    background-image: url(/Ressources/Menu.jpg);
 }

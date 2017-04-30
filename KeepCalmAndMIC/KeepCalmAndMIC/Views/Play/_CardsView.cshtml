@@ -11,7 +11,7 @@
     @foreach (Card c in Model.Cards)
     {
         var buttonName = "btn" + c.Id;
-        <button id="@buttonName">
+        <button id="@buttonName" class="box2">
             <h4>@c.Name</h4>
             <p>@c.Description</p>
             <h5>Effects :</h5>

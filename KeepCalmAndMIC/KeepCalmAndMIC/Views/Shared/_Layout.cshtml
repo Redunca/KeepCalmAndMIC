@@ -29,7 +29,7 @@
                         <li>@Html.ActionLink("Games","Games","Home")</li>
                     }
                     <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    @*<li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -39,7 +39,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - Keep Calm And MIC</p>
+            <p class="greyBackgroundColor">&copy; @DateTime.Now.Year - Keep Calm And MIC</p>
         </footer>
     </div>
 

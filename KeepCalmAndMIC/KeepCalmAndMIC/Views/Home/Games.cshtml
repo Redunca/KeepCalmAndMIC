@@ -5,41 +5,42 @@
 }
 
 <h2>Games</h2>
-
-<div class="col-md-6">
-	<div>
-		<input type="button" class="btn btn-default" value="Continuer la partie" onclick="" />
-		<input type="button" class="btn btn-default" value="Nouvelle partie" onclick="location.href='@Url.Action("Index", "Play")'" />
-	</div>
-	<div>
-		<h3>Top Scores</h3>
-		@{
-			List<int> topScores;
-			if (Model.TryGetValue("topGames", out topScores))
-			{
-				<ul>
-					@foreach (int score in topScores)
-					{
-						<li>@score</li>
-					}
-				</ul>
-			}
-		}
-	</div>
+<div>
+    <input type="button" class="btn btn-default" value="Continuer la partie" onclick="" />
+    <input type="button" class="btn btn-default" value="Nouvelle partie" onclick="location.href='@Url.Action("Index", "Play")'" />
 </div>
+<div class="row">
+    <div class="col-md-5 greyBackgroundColor scoreboard">
 
-<div class="col-md-6">
-	<h3>Vos scores</h3>
-	@{
-		List<int> userScores;
-		if (Model.TryGetValue("userGames", out userScores))
-		{
-			<ul>
-				@foreach (int score in userScores)
-				{
-					<li>@score</li>
-				}
-			</ul>
-		}
-	}
+        <div>
+            <h3>Top Scores</h3>
+            @{List<int> topScores;
+                if (Model.TryGetValue("topGames", out topScores))
+                {
+                    <ul>
+                        @foreach (int score in topScores)
+                        {
+                            <li>@score</li>
+                        }
+                    </ul>
+                }
+            }
+        </div>
+    </div>
+    <div class="col-md-2"></div>
+    <div class="col-md-5 greyBackgroundColor scoreboard">
+        <h3>Your scores</h3>
+        @{
+            List<int> userScores;
+            if (Model.TryGetValue("userGames", out userScores))
+            {
+                <ul>
+                    @foreach (int score in userScores)
+                    {
+                        <li>@score</li>
+                    }
+                </ul>
+            }
+        }
+    </div>
 </div>

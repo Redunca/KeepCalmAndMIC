@@ -46,8 +46,8 @@ namespace KeepCalmAndMIC.Controllers
 
             playViewModel.statsOfWeekAndDayViewModel = new StatsOfWeekAndDayViewModel();
 
-            playViewModel.statsOfWeekAndDayViewModel.Global = new Stats(); // ici : generate global stats
-            playViewModel.statsOfWeekAndDayViewModel.Weekly = new Stats(); // ici : generate Weekly stats
+            //playViewModel.statsOfWeekAndDayViewModel.Global = new Stats(); // ici : generate global stats
+            //playViewModel.statsOfWeekAndDayViewModel.Weekly = new Stats(); // ici : generate Weekly stats
             playViewModel.statsOfWeekAndDayViewModel.Daily = new Stats(); // ici : generate daily stats
             
             playViewModel.cardsViewModel = new CardsViewModel();
@@ -64,7 +64,38 @@ namespace KeepCalmAndMIC.Controllers
             GameId = game.Id; // ici : Check if it is the same id as in the db
             LookingWeek = 0;
             LookingDay = 0;
-            
+            var day = game.Internship.WeeksOfTheInternship.ElementAt(game.Internship.CurrentWeek)
+                .DaysOfTheWeek.ElementAt(game.Internship.CurrentDayOfTheWeek);
+            Day yesterday;
+            if (game.Internship.CurrentDayOfTheWeek == 0)
+            {
+                if (game.Internship.CurrentWeek == 0)
+                {
+                    yesterday = new Day()
+                    {
+                        DayStats = new Stats()
+                        {
+                            Ambiance = 10,
+                            MutualAid = 10,
+                            Production = 10,
+                            Productivity = 10,
+                            TechnicalSkills = 10
+                        }
+                    };
+                }
+                else
+                {
+                    yesterday = game.Internship.WeeksOfTheInternship.ElementAt(game.Internship.CurrentWeek - 1).DaysOfTheWeek.ElementAt(4);
+                }
+            }
+            else
+            {
+                yesterday = game.Internship.WeeksOfTheInternship.ElementAt(game.Internship.CurrentWeek)
+                .DaysOfTheWeek.ElementAt(game.Internship.CurrentDayOfTheWeek - 1);
+            }
+            day.DayStats = ScoreCalculator.UpdateStatsForDay(day.SelectedCards, day.LivingEvents, yesterday.DayStats);
+            playViewModel.statsOfWeekAndDayViewModel.Daily = day.DayStats;
+            await UnitOfWork.SaveChangesAsync();
             return View("Index", playViewModel);
         }
 
@@ -93,8 +124,8 @@ namespace KeepCalmAndMIC.Controllers
 
             playViewModel.statsOfWeekAndDayViewModel = new StatsOfWeekAndDayViewModel();
 
-            playViewModel.statsOfWeekAndDayViewModel.Global = new Stats(); // ici : generate global stats
-            playViewModel.statsOfWeekAndDayViewModel.Weekly = new Stats(); // ici : generate Weekly stats
+            //playViewModel.statsOfWeekAndDayViewModel.Global = new Stats(); // ici : generate global stats
+            //playViewModel.statsOfWeekAndDayViewModel.Weekly = new Stats(); // ici : generate Weekly stats
             playViewModel.statsOfWeekAndDayViewModel.Daily = new Stats(); // ici : generate daily stats
 
             playViewModel.cardsViewModel = new CardsViewModel();
@@ -107,29 +138,45 @@ namespace KeepCalmAndMIC.Controllers
             {
                 // meeeeeerde !!!!
             }
-            
+            var day = game.Internship.WeeksOfTheInternship.ElementAt(game.Internship.CurrentWeek)
+                .DaysOfTheWeek.ElementAt(game.Internship.CurrentDayOfTheWeek);
+            Day yesterday;
+            if (game.Internship.CurrentDayOfTheWeek == 0)
+            {
+                if (game.Internship.CurrentWeek == 0)
+                {
+                    yesterday = new Day()
+                    {
+                        DayStats = new Stats()
+                        {
+                            Ambiance = 10,
+                            MutualAid = 10,
+                            Production = 10,
+                            Productivity = 10,
+                            TechnicalSkills = 10
+                        }
+                    };
+                }
+                else
+                {
+                    yesterday = game.Internship.WeeksOfTheInternship.ElementAt(game.Internship.CurrentWeek - 1).DaysOfTheWeek.ElementAt(4);
+                }
+            }
+            else
+            {
+                yesterday = game.Internship.WeeksOfTheInternship.ElementAt(game.Internship.CurrentWeek)
+                .DaysOfTheWeek.ElementAt(game.Internship.CurrentDayOfTheWeek - 1);
+            }
+            day.DayStats = ScoreCalculator.UpdateStatsForDay(day.SelectedCards, day.LivingEvents, yesterday.DayStats);
+            playViewModel.statsOfWeekAndDayViewModel.Daily = day.DayStats;
             await UnitOfWork.SaveChangesAsync();
 
             return View("Index", playViewModel);
         }
 
-        public ActionResult GetWeek(int weekNumber)
+        public async Task<ActionResult> GetWeek(int weekNumber)
         {
             LookingWeek = weekNumber;
-
-            StatsOfWeekAndDayViewModel statsOfWeekAndDayViewModel = new StatsOfWeekAndDayViewModel();
-
-            /* générer les stats sur base de (LookingWeek, LookingDay) */
-            statsOfWeekAndDayViewModel.Global = new Stats(); // ici : generate global stats
-            statsOfWeekAndDayViewModel.Weekly = new Stats(); // ici : generate Weekly stats
-            statsOfWeekAndDayViewModel.Daily = new Stats(); // ici : generate daily stats
-            return PartialView("_StatsOfWeekAndDay", statsOfWeekAndDayViewModel);
-        }
-
-        public ActionResult GetDay(int dayNumber)
-        {
-            LookingDay = dayNumber;
-            GameManagement gameManagement = new GameManagement(HttpContext.GetOwinContext());
             Game game = UnitOfWork.Games.GetById(GameId).Result;
             StatsOfWeekAndDayViewModel statsOfWeekAndDayViewModel = new StatsOfWeekAndDayViewModel();
 
@@ -142,17 +189,75 @@ namespace KeepCalmAndMIC.Controllers
             Day yesterday;
             if (game.Internship.CurrentDayOfTheWeek == 0)
             {
-                yesterday = game.Internship.WeeksOfTheInternship.ElementAt(game.Internship.CurrentWeek-1)
-                .DaysOfTheWeek.ElementAt(4);
+                if (game.Internship.CurrentWeek == 0)
+                {
+                    yesterday = new Day()
+                    {
+                        DayStats = new Stats()
+                        {
+                            Ambiance = 10,
+                            MutualAid = 10,
+                            Production = 10,
+                            Productivity = 10,
+                            TechnicalSkills = 10
+                        }
+                    };
+                }
+                else
+                {
+                    yesterday = game.Internship.WeeksOfTheInternship.ElementAt(game.Internship.CurrentWeek - 1).DaysOfTheWeek.ElementAt(4);
+                }
+            }
+            else
+            {
+                yesterday = game.Internship.WeeksOfTheInternship.ElementAt(game.Internship.CurrentWeek)
+                .DaysOfTheWeek.ElementAt(game.Internship.CurrentDayOfTheWeek - 1);
+            }
+            day.DayStats = ScoreCalculator.UpdateStatsForDay(day.SelectedCards, day.LivingEvents, yesterday.DayStats);
+            statsOfWeekAndDayViewModel.Daily = day.DayStats;
+            await UnitOfWork.SaveChangesAsync();
+            return PartialView("_StatsOfWeekAndDay", statsOfWeekAndDayViewModel);
+        }
+
+        public async Task<ActionResult> GetDay(int dayNumber)
+        {
+            LookingDay = dayNumber;
+            Game game = UnitOfWork.Games.GetById(GameId).Result;
+            StatsOfWeekAndDayViewModel statsOfWeekAndDayViewModel = new StatsOfWeekAndDayViewModel();
+
+            /* générer les stats sur base de (LookingWeek, LookingDay) */
+            //statsOfWeekAndDayViewModel.Global = new Stats(); // ici : generate global stats
+            //statsOfWeekAndDayViewModel.Weekly = new Stats(); // ici : generate Weekly stats
+            statsOfWeekAndDayViewModel.Daily = new Stats(); // ici : generate daily stats
+            var day = game.Internship.WeeksOfTheInternship.ElementAt(game.Internship.CurrentWeek)
+                .DaysOfTheWeek.ElementAt(game.Internship.CurrentDayOfTheWeek);
+            Day yesterday;
+            if (game.Internship.CurrentDayOfTheWeek == 0)
+            {
+                if(game.Internship.CurrentWeek == 0)
+                {
+                    yesterday = new Day() {
+                        DayStats = new Stats() {
+                            Ambiance = 10,
+                            MutualAid = 10,
+                            Production = 10,
+                            Productivity = 10,
+                            TechnicalSkills = 10
+                    } };
+                }
+                else
+                {
+                    yesterday = game.Internship.WeeksOfTheInternship.ElementAt(game.Internship.CurrentWeek - 1).DaysOfTheWeek.ElementAt(4);
+                }
             }
             else
             {
                 yesterday = game.Internship.WeeksOfTheInternship.ElementAt(game.Internship.CurrentWeek)
                 .DaysOfTheWeek.ElementAt(game.Internship.CurrentDayOfTheWeek-1);
             }
-            
-            statsOfWeekAndDayViewModel.Daily = ScoreCalculator.UpdateStatsForDay(day.SelectedCards,day.LivingEvents,);
-
+            day.DayStats = ScoreCalculator.UpdateStatsForDay(day.SelectedCards, day.LivingEvents, yesterday.DayStats);
+            statsOfWeekAndDayViewModel.Daily = day.DayStats;
+            await UnitOfWork.SaveChangesAsync();
             return PartialView("_StatsOfWeekAndDay", statsOfWeekAndDayViewModel);
 
         }

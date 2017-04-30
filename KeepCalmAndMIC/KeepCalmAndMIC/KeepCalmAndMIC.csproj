@@ -280,10 +280,9 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Ressources\BG.jpg" />
-    <Content Include="Ressources\BlocCentral.jpg" />
-    <Content Include="Ressources\BlocLateral.jpg" />
-    <Content Include="Ressources\BlocSuperieurBase.jpg" />
-    <Content Include="Ressources\BlocTitre.jpg" />
+    <Content Include="Ressources\Box1.jpg" />
+    <Content Include="Ressources\Box2.jpg" />
+    <Content Include="Ressources\Menu.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
