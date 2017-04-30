@@ -18,12 +18,17 @@ namespace KeepCalmAndMIC.Models
         public List<Week> WeeksOfTheInternship { get; set; } = new List<Week>();
         public int CurrentWeek { get; set; }
         public int CurrentDayOfTheWeek { get; set; }
-
-		//public int GameId { get; set; }
-		//[ForeignKey("GameId")]
+							  
 		public Game Game { get; set; }
 
 		public Internship() { }
+
+		public Internship(int gameId)
+		{
+			this.Id = gameId;
+			CurrentWeek = 0;
+			CurrentDayOfTheWeek = 0;
+		}
 
 		public Internship(int numberOfWeek, int gameId)
 		{

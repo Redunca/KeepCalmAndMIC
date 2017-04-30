@@ -130,8 +130,8 @@ namespace KeepCalmAndMIC.BusinessLayer
         {
             Random rnd = new Random();
 
-			Internship intern = new Internship(15, game.Id);
-			bool ok = await (OwinContext.Get<InternshipManagement>()).AddInternship(intern);
+			Internship intern = new Internship(game.Id);
+			intern = await (OwinContext.Get<InternshipManagement>()).AddInternship(intern);
 			game.Internship = intern;
             
             Deck gameaction = new Deck();

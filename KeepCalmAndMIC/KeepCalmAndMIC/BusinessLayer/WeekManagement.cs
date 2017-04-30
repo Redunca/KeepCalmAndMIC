@@ -12,6 +12,17 @@ namespace KeepCalmAndMIC.BusinessLayer
     {
         public WeekManagement(IOwinContext owinContext) : base(owinContext) { }
 
+		public async Task<Week> AddWeek()
+		{
+			Week week = new Week();
+			for (int i = 0; i < 5; i++)
+			{
+				Day day = await UnitOfWork.Days.Add(new Day());
+				week.DaysOfTheWeek.Add(day);
+			}
+			return await UnitOfWork.Weeks.Add(week);
+		}
+
         public async Task<Stats> GetWeekStats(int id)
         {
             Week week = await UnitOfWork.Weeks.GetById(id);
