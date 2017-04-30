@@ -6,7 +6,8 @@
             if (w.IsPassed)
             {
                 <div class="col-sm-1" style="background-color:red">
-                    @Html.Label(w.WeekNumber.ToString())
+                    <input type="button" value="@w.WeekNumber" onclick="location.href='@Url.Action("SelectWeek","Play",new {week = @w})'" />
+                    @*@Html.Label(w.WeekNumber.ToString())*@
                 </div>
             }
             else

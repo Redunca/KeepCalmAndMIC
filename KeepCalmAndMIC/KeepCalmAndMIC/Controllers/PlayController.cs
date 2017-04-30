@@ -76,5 +76,13 @@ namespace KeepCalmAndMIC.Controllers
             tempCard.IsSelected = !tempCard.IsSelected;
             return View("Index");
         }
+        public ActionResult SelectWeek(WeekViewModel week)
+        {
+            //Here we have to manage that
+            ViewBag.TimeViewModel = new TimeViewModel();
+            ViewBag.TimeViewModel.SelectedDay = SelectedDay;
+            ViewBag.CardsViewModel = CardsViewModel;
+            return View("Index");
+        }
     }
 }
