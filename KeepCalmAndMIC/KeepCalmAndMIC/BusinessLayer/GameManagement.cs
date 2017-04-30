@@ -18,17 +18,17 @@ namespace KeepCalmAndMIC.BusinessLayer
 
             Card card = null;
 
-			Deck actionDeck = null;
+			Deck handDeck = null;
 			foreach (Deck deck in game.Decks)
 			{
-				if (deck.DeckType.Equals(TypeDeck.Action))
+				if (deck.DeckType.Equals(TypeDeck.Hand))
 				{
-					actionDeck = deck;
+					handDeck = deck;
 				}
 			}
-            if (actionDeck != null)
+            if (handDeck != null)
             {
-                card = actionDeck.CardList.First(c => c.Id == cardId);
+                card = handDeck.CardList.First(c => c.Id == cardId);
 				// ici : Remettre une carte dans la main
 
 				await UnitOfWork.Days.SetActionOnADay(day.Id, card);
