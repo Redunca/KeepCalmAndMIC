@@ -70,12 +70,10 @@
                 else {
                     ActionIdToSend += '_' + element;
                 }
-
-                ActionIdToSend  .push(element);
             }
         });
         if (ActionIdToSend != "") {
-            window.location = '/Player/SetActionCards?cards=' + ActionIdToSend;
+            window.location = '/Play/SetActionCards?cards=' + ActionIdToSend;
         }
         else {
             alert("Aucune carte sélectionnée!");
