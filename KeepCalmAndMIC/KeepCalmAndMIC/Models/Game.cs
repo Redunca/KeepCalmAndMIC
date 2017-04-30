@@ -30,7 +30,7 @@ namespace KeepCalmAndMIC.Models
 		{
 			Internship = new Internship(15);
 			Decks = new Dictionary<TypeDeck, Deck>();
-		}
+        }
         
 	}
 }

@@ -29,14 +29,7 @@ namespace KeepCalmAndMIC.Controllers
         {
             GameManagement gameManagement = new GameManagement(HttpContext.GetOwinContext());
 
-            Deck gameaction = new Deck();
-            Deck gameevents = new Deck();
-            Deck gamehand = new Deck();
-
             Game game = new Game();
-            game.Decks.Add(TypeDeck.Action, gameaction);
-            game.Decks.Add(TypeDeck.Event, gameevents);
-            game.Decks.Add(TypeDeck.Hand, gamehand);
             
             await gameManagement.StartGame(game);
 
@@ -84,8 +77,7 @@ namespace KeepCalmAndMIC.Controllers
                 int idInt = Convert.ToInt32(id);
                 await gameManagement.UseActionCardOnADayAsync(GameId, idInt, LookingWeek, LookingDay);
             }
-
-
+            
             Stats dailyStats = await gameManagement.NexDayAsync(GameId);
             
             Game game = await UnitOfWork.Games.GetById(GameId);

@@ -6,19 +6,26 @@ using System.Linq;
 
 namespace KeepCalmAndMIC.Models
 {
-	public class Deck : IBaseModel
+    public class Deck : IBaseModel
     {
-		[Key]
-		public int Id { get; set; }
-		public DateTime? CreatedOn { get; set; }
-		public DateTime? ModifiedOn { get; set; }
+        [Key]
+        public int Id { get; set; }
+        public DateTime? CreatedOn { get; set; }
+        public DateTime? ModifiedOn { get; set; }
 
-		public List<Card> CardList { get; set; } = new List<Card>();
+        public List<Card> CardList { get; set; } = new List<Card>();
 
-		public int GameId { get; set; }
-		[ForeignKey("GameId")]
-		public Game Game { get; set; }
+        public int GameId { get; set; }
+        [ForeignKey("GameId")]
+        public Game Game { get; set; }
+
+        public Deck() {
+
+        }
+        
     }
+
+    
 
 	public enum TypeDeck
 	{

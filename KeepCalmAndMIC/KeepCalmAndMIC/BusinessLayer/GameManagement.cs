@@ -99,36 +99,35 @@ namespace KeepCalmAndMIC.BusinessLayer
 
         public async Task StartGame(Game game)
         {
+            Random rnd = new Random();
             GameManagement gameManagement = OwinContext.Get<GameManagement>();
-
-            Deck actionDeck = new Deck();
-            Deck eventDeck = new Deck();
-            Deck handDeck = new Deck();
-
+            
             Internship internship = new Internship();
             internship.CurrentWeek = 0;
             internship.CurrentDayOfTheWeek = 0;
+            
+            Deck gameaction = new Deck();
+            gameaction.CardList = await UnitOfWork.Cards.GetRandomCardsAsync(TypeCard.Action, 600);
 
-            if (game.Decks.TryGetValue(TypeDeck.Action, out actionDeck))
+            Deck gameevents = new Deck();
+            gameevents.CardList = await UnitOfWork.Cards.GetRandomCardsAsync(TypeCard.Event, 75);
+
+            Deck gamehand = new Deck();
+
+
+            int numberOfRows = gameaction.CardList.Count();
+
+            for (int i = 0; i < 8; i++)
             {
-                actionDeck.CardList = await UnitOfWork.Cards.GetRandomCardsAsync(TypeCard.Action, 600);
-            }
-            else
-            {
-                // meeeeeerde !!!!
+                Card card = gameaction.CardList.ElementAt(rnd.Next(0, numberOfRows));
+                gamehand.CardList.Add(card);
             }
 
-            if (game.Decks.TryGetValue(TypeDeck.Event, out eventDeck))
-            {
-                eventDeck.CardList = await UnitOfWork.Cards.GetRandomCardsAsync(TypeCard.Event, 75);
-            }
-            else
-            {
-                // meeeeeerde !!!!
-            }
-
+            game.Decks.Add(TypeDeck.Action, gameaction);
+            game.Decks.Add(TypeDeck.Event, gameevents);
+            game.Decks.Add(TypeDeck.Hand, gamehand);
+            
             await UnitOfWork.SaveChangesAsync();
-            await NexDayAsync(game.Id);
         }
     }
 }
