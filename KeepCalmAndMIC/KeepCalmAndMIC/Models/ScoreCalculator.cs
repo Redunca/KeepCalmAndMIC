@@ -23,6 +23,20 @@ namespace KeepCalmAndMIC.Models
         public static double IncreaseOfTechnicSkills {get;set;}
         public static Stats UpdateStatsForDay(List<Card> ActionCards, List<Card> EventCards, Stats morningStats)
         {
+            if(EventCards.Count == 0)
+            {
+                EventCards.Add(new Card()
+                {
+                    CardType = TypeCard.Event,
+                    EffectOnAmbiance = 0,
+                    EffectOnMutualAid = 0,
+                    EffectOnProduction = 0,
+                    EffectOnProductivity = 0,
+                    EffectOnTechnicalSkills = 0,
+                    EnergyCost = 0,
+                    TimeCostInHour = 0
+                });
+            }
             Stats eveningStats = new Stats()
             {
                 Ambiance = morningStats.Ambiance,
@@ -69,9 +83,20 @@ namespace KeepCalmAndMIC.Models
                         NumberOfHoursRemaining -= actionCard.TimeCostInHour;
                     }
                     Energy -= actionCard.EnergyCost;
+                    if (NumberOfHoursRemaining - eventCard.TimeCostInHour < 0)
+                    {
+                        Energy -= eventCard.TimeCostInHour - NumberOfHoursRemaining;
+                        NumberOfHoursRemaining = 0;
+                    }
+                    else
+                    {
+                        NumberOfHoursRemaining -= eventCard.TimeCostInHour;
+                    }
+                    Energy -= eventCard.EnergyCost;
 
                 }
             }
+            DaysStats.Add(eveningStats);
             return eveningStats;
         }
     }
