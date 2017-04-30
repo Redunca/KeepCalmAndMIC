@@ -20,7 +20,8 @@ namespace KeepCalmAndMIC.Repository
 
             for (int i = 1; i <= numberOfCards; i++)
             {
-                randomCards.Add(Context.Cards.ElementAt(rnd.Next(0, numberOfRows)));
+                Card card = BddCard.ElementAt(rnd.Next(0, numberOfRows));
+                randomCards.Add(card);
             }
 
             await Context.SaveChangesAsync();

@@ -26,20 +26,13 @@ namespace KeepCalmAndMIC.Models
 		
 		public bool InProgress { get; set; }
 
+		public int FinalScore { get; set; }
+
 		public Game()
 		{
 			Internship = new Internship(15);
 			Decks = new Dictionary<TypeDeck, Deck>();
-
-            Deck action = new Deck();
-			Decks.Add(TypeDeck.Action, action);
-
-			Deck events = new Deck();
-            Decks.Add(TypeDeck.Event, events);
-
-			Deck hand = new Deck();
-			Decks.Add(TypeDeck.Hand, new Deck());
-		}
+        }
         
 	}
 }

@@ -42,3 +42,7 @@ dayInformations{
     width: 100%;
     background-color: lightblue;
 }
+
+.selected {
+    border: 2px solid Blue;
+}

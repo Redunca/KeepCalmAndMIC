@@ -10,13 +10,28 @@ namespace KeepCalmAndMIC.BusinessLayer
     public class GameManagement : BaseManagement<GameManagement>
     {
         public GameManagement (IOwinContext owinContext) : base(owinContext) { }
-
-        public async Task UseActionCardOnADayAsync(int idGame, Card card, int weekNumber, int dayNumberOfWeek)
+        
+        public async Task UseActionCardOnADayAsync(int idGame, int cardId, int weekNumber, int dayNumberOfWeek)
         {
             Game game = await UnitOfWork.Games.GetById(idGame);
             Day day = game.Internship.WeeksOfTheInternship.ElementAt(weekNumber).DaysOfTheWeek.ElementAt(dayNumberOfWeek);
 
+            Card card = null;
+
+            Deck actionDeck = new Deck();
+
+            if (game.Decks.TryGetValue(TypeDeck.Action, out actionDeck))
+            {
+                card = actionDeck.CardList.First(c => c.Id == cardId);
+                // ici : Remettre une carte dans la main
+            }
+            else
+            {
+                // meeeeeerde !!!!
+            }
+
             await UnitOfWork.Days.SetActionOnADay(day.Id, card);
+            await UnitOfWork.SaveChangesAsync();
         }
         
         public async Task SetEventOnADay(int idGame, Card card, int weekNumber, int dayNumberOfWeek)
@@ -73,11 +88,6 @@ namespace KeepCalmAndMIC.BusinessLayer
                 {
                     // meeeeeerde !!!!
                 }
-
-
-
-
-                
             }
             else
             {
@@ -87,38 +97,37 @@ namespace KeepCalmAndMIC.BusinessLayer
             return await internshipManagement.NextDayAsync(game.InternshipId);
         }
 
-        public async Task StartGame(int id)
+        public async Task StartGame(Game game)
         {
-            Game game = await UnitOfWork.Games.GetById(id);
+            Random rnd = new Random();
             GameManagement gameManagement = OwinContext.Get<GameManagement>();
+            
+            Internship internship = new Internship();
+            internship.CurrentWeek = 0;
+            internship.CurrentDayOfTheWeek = 0;
+            
+            Deck gameaction = new Deck();
+            gameaction.CardList = await UnitOfWork.Cards.GetRandomCardsAsync(TypeCard.Action, 600);
 
-            Deck eventDeck = new Deck();
-            Deck actionDeck = new Deck();
-            Deck handDeck = new Deck();
+            Deck gameevents = new Deck();
+            gameevents.CardList = await UnitOfWork.Cards.GetRandomCardsAsync(TypeCard.Event, 75);
 
-            game.Internship.CurrentWeek = 0;
-            game.Internship.CurrentDayOfTheWeek = 0;
+            Deck gamehand = new Deck();
 
-            if (game.Decks.TryGetValue(TypeDeck.Action, out actionDeck))
-            {
-                actionDeck.CardList = await UnitOfWork.Cards.GetRandomCardsAsync(TypeCard.Action, 600);
-            }
-            else
-            {
-                // meeeeeerde !!!!
-            }
 
-            if (game.Decks.TryGetValue(TypeDeck.Event, out eventDeck))
+            int numberOfRows = gameaction.CardList.Count();
+
+            for (int i = 0; i < 8; i++)
             {
-                eventDeck.CardList = await UnitOfWork.Cards.GetRandomCardsAsync(TypeCard.Event, 75);
-            }
-            else
-            {
-                // meeeeeerde !!!!
+                Card card = gameaction.CardList.ElementAt(rnd.Next(0, numberOfRows));
+                gamehand.CardList.Add(card);
             }
 
+            game.Decks.Add(TypeDeck.Action, gameaction);
+            game.Decks.Add(TypeDeck.Event, gameevents);
+            game.Decks.Add(TypeDeck.Hand, gamehand);
+            
             await UnitOfWork.SaveChangesAsync();
-            await NexDayAsync(game.Id);
         }
     }
 }

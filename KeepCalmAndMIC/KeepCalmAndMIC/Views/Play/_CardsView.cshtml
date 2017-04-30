@@ -1,0 +1,102 @@
+﻿@using KeepCalmAndMIC.Models
+@model KeepCalmAndMIC.Models.ViewModels.CardsViewModel
+
+
+<div id="cardsSelection" class="row">
+
+    <script type="text/javascript">
+        var arrayBtn = new Array();
+    </script>
+
+    @foreach (Card c in Model.Cards)
+    {
+        var buttonName = "btn" + c.Id;
+        <button id="@buttonName">
+            <h4>@c.Name</h4>
+            <p>@c.Description</p>
+            <h5>Effects :</h5>
+            <table>
+                <tr>
+                    <td>on Production :</td>
+                    <td>@c.EffectOnProduction</td>
+                </tr>
+                <tr>
+                    <td>on Mutual Aid :</td>
+                    <td>@c.EffectOnMutualAid</td>
+                </tr>
+                <tr>
+                    <td>on Skills :</td>
+                    <td>@c.EffectOnTechnicalSkills</td>
+                </tr>
+                <tr>
+                    <td>on Ambiance :</td>
+                    <td>@c.EffectOnAmbiance</td>
+                </tr>
+            </table>
+            <h5>Costs :</h5>
+            <table>
+                <tr>
+                    <td>Time : </td>
+                    <td>@c.TimeCostInHour</td>
+                </tr>
+            </table>
+        </button>
+
+        <script type="text/javascript">
+            arrayBtn.push("@buttonName");
+        </script>
+    }
+</div >
+<div class="row">
+    <button id="SelectedCards" class="center-block">Apply Actions</button>
+</div>
+
+<script type="text/javascript">
+
+    arrayBtn.forEach(function (element) {
+        listenCardForSelect(element);
+    });
+
+    $("#SelectedCards").on("click", function (e) {
+
+        var ActionIdToSend = "";
+
+        arrayBtn.forEach(function (element) {
+            var elementId = "#" + element;
+            if ($(elementId).hasClass("selected")) {
+                if (ActionIdToSend == "") {
+                    ActionIdToSend = element;
+                }
+                else {
+                    ActionIdToSend += '_' + element;
+                }
+            }
+        });
+        if (ActionIdToSend != "") {
+            window.location = '/Play/SetActionCards?cards=' + ActionIdToSend;
+        }
+        else {
+            alert("Aucune carte sélectionnée!");
+        }
+    });
+
+    /****************************************************************************************************
+    *                                       Library
+    ****************************************************************************************************/
+    function listenCardForSelect(idToListen) {  
+        idToListen = "#" + idToListen;
+
+        $(idToListen).on("click", function (e) {
+
+            console.log("Nay");
+
+            if ($(this).hasClass("selected")) {
+                $(this).removeClass("selected");
+            }
+            else {
+                $(this).addClass("selected");
+            }
+        });
+    }
+</script>
+

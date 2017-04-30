@@ -1,0 +1,87 @@
+﻿@model KeepCalmAndMIC.Models.ViewModels.TimeViewModel
+
+<div class="row">
+    @for (var i = 0; i < 15; i++)
+    {
+        var lecteur = i + 1;
+        var nameId = "sem" + i;
+
+        if (i == Model.SelectedDay)
+        {
+
+            <button id="@nameId" data-weekNumber="@i" class="selected">[W: @lecteur ]</button>
+        }
+        else
+        {
+            <button id="@nameId" data-weekNumber="@i">W: @lecteur </button>
+        }
+    }
+</div>
+<div class="row">
+    @for (var i = 0; i < 5; i++)
+    {
+        var lecteur = i + 1;
+        var nameId = "day" + i;
+
+        if (i == Model.SelectedDay)
+        {
+
+            <button id="@nameId" data-weekNumber="@i" class="selected">[D: @lecteur ]</button>
+        }
+        else
+        {
+            <button id="@nameId" data-weekNumber="@i">D: @lecteur </button>
+        }
+    }
+
+</div>
+
+
+<script type="text/javascript">
+    for (var i = 0; i < 15; i++) {
+        var nameOfId = "sem" + i;
+        listenForSelectWeek(nameOfId);
+    }
+
+    for (var i = 0; i < 5; i++) {
+        var nameOfId = "day" + i;
+        listenForSelectDay(nameOfId);
+    }
+
+    /****************************************************************************************************
+    *                                       Library
+    ****************************************************************************************************/
+    function listenForSelectWeek (idTolisten) {
+
+        var idTolisten = "#" + idTolisten;
+        
+        $(idTolisten).on("click", function (e) {
+            var weekNumber = this.getAttribute("data-weekNumber");
+            var weekZoom = $('#weekZoom');
+
+            var url = "/Play/GetWeek";
+            $.get(url,
+                { weekNumber: weekNumber },
+                function (result) {
+                    weekZoom.html(result);
+                });
+        });
+    };
+
+    function listenForSelectDay(idTolisten) {
+
+        var idTolisten = "#" + idTolisten;
+
+        $(idTolisten).on("click", function (e) {
+            var dayNumber = this.getAttribute("data-weekNumber");
+            var weekZoom = $('#weekZoom');
+
+            var url = "/Play/GetDay";
+            $.get(url,
+                { dayNumber: dayNumber },
+                function (result) {
+                    weekZoom.html(result);
+                });
+        });
+    };
+</script>

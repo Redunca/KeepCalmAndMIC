@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using KeepCalmAndMIC.Models;
 
 namespace KeepCalmAndMIC.Controllers
 {
@@ -16,10 +17,14 @@ namespace KeepCalmAndMIC.Controllers
 
 		public async Task<ActionResult> Games()
 		{
-			var user = UnitOfWork.Users.GetByName(User.Identity.Name);
-			var userGames = await UnitOfWork.Games.SearchFor(g => g.PlayerId.Equals(user.Id));
+			ApplicationUser user = UnitOfWork.Users.GetByName(User.Identity.Name);
+			List<int> userGames = await UnitOfWork.Games.GetUserScoresSorted(user.Id);
+			List<int> topGames = await UnitOfWork.Games.GetTopGames(5);
+			Dictionary<string, List<int>> scores = new Dictionary<string, List<int>>();
+			scores.Add("userGames", userGames);
+			scores.Add("topGames", topGames);
 
-			return View();
+			return View(scores);
 		}
 
 		public ActionResult About()

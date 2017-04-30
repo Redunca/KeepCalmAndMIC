@@ -1,13 +1,17 @@
-﻿
+﻿@model KeepCalmAndMIC.Models.ViewModels.PlayViewModel
+
 @{
     ViewBag.Title = "Keep Calm And MIC !";
 }
 
-    @Html.Partial("_ProgressView", (KeepCalmAndMIC.Models.ViewModels.ProgressViewModel)ViewBag.ProgressViewModel)
-    
+<section id="timeline">
+    @Html.Partial("_ProgressView", Model.timeViewModel)
+</section>
 
-    @Html.Partial("_TimeView", (KeepCalmAndMIC.Models.ViewModels.TimeViewModel)ViewBag.TimeViewModel)
+<section id="weekZoom">
+    @Html.Partial("_StatsOfWeekAndDay", Model.statsOfWeekAndDayViewModel)
+</section>
 
-    @Html.Partial("_CardsView", (KeepCalmAndMIC.Models.ViewModels.CardsViewModel)ViewBag.CardsViewModel)
-
-
+<section id="ActionCards">
+    @Html.Partial("_CardsView", Model.cardsViewModel)
+</section>
