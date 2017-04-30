@@ -36,8 +36,10 @@ namespace KeepCalmAndMIC.Models
 		public int? DeckId { get; set; }
 		[ForeignKey("DeckId")]
 		public Deck Deck { get; set; }
-        [NotMapped]
+
+		[NotMapped]
         public bool IsSelected { get; set; }
+
 		public Card() { }
 
 		public Card(TypeCard typeCard, string name, string description, double effectOnProductivity, double effectOnMutualAid,

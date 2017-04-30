@@ -13,6 +13,27 @@ namespace KeepCalmAndMIC.BusinessLayer
     {
         public InternshipManagement(IOwinContext owinContext) : base(owinContext) { }
 
+		public async Task<bool> AddInternship(Internship internship)
+		{
+			try
+			{
+				foreach (Week week in internship.WeeksOfTheInternship)
+				{
+					foreach (Day day in week.DaysOfTheWeek)
+					{
+						await UnitOfWork.Days.Add(day);
+					}
+					await UnitOfWork.Weeks.Add(week);
+				}
+				await UnitOfWork.Internship.Add(internship);
+				return true;
+			}
+			catch
+			{
+				return false;
+			}
+		}
+
         public async Task<Stats> GetStageStatsAsync(int id)
         {
             Internship internship = await UnitOfWork.Internship.GetById(id);

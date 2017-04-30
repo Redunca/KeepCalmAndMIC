@@ -19,19 +19,19 @@ namespace KeepCalmAndMIC.BusinessLayer
             Card card = null;
 
             Deck actionDeck = new Deck();
-
             if (game.Decks.TryGetValue(TypeDeck.Action, out actionDeck))
             {
                 card = actionDeck.CardList.First(c => c.Id == cardId);
-                // ici : Remettre une carte dans la main
-            }
+				// ici : Remettre une carte dans la main
+
+				await UnitOfWork.Days.SetActionOnADay(day.Id, card);
+				await UnitOfWork.SaveChangesAsync();
+			}
             else
             {
+				throw new Exception("On code avec le Q");
                 // meeeeeerde !!!!
             }
-
-            await UnitOfWork.Days.SetActionOnADay(day.Id, card);
-            await UnitOfWork.SaveChangesAsync();
         }
         
         public async Task SetEventOnADay(int idGame, Card card, int weekNumber, int dayNumberOfWeek)
@@ -102,6 +102,7 @@ namespace KeepCalmAndMIC.BusinessLayer
             Random rnd = new Random();
 
 			Internship intern = new Internship(15, game.Id);
+			bool ok = await (OwinContext.Get<InternshipManagement>()).AddInternship(intern);
 			game.Internship = intern;
             
             Deck gameaction = new Deck();

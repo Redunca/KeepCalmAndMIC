@@ -61,7 +61,10 @@ namespace KeepCalmAndMIC.Repository
 
         public async Task SetActionOnADay(int id, Card card)
         {
-            Context.Days.First(d => d.Id == id).SelectedCards.Add(card);
+			Day day = Context.Days.FirstOrDefault(d => d.Id == id);
+			day.SelectedCards.Add(card);
+
+			//Context.Days.First(d => d.Id == id).SelectedCards.Add(card);
 
             await Context.SaveChangesAsync();
         }

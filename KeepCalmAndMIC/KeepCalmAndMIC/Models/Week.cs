@@ -24,7 +24,6 @@ namespace KeepCalmAndMIC.Models
             {
                 DaysOfTheWeek.Add(new Day());
             }
-            
         }
     }
     

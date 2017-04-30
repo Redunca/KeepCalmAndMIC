@@ -8,6 +8,8 @@ namespace KeepCalmAndMIC.Models
 {
     public class Deck : IBaseModel
     {
+		public TypeDeck DeckType { get; set; }
+
         [Key]
         public int Id { get; set; }
         public DateTime? CreatedOn { get; set; }
@@ -19,13 +21,14 @@ namespace KeepCalmAndMIC.Models
         [ForeignKey("GameId")]
         public Game Game { get; set; }
 
-        public Deck() {
+		public Deck() { }
 
-        }
+		public Deck(TypeDeck type)
+		{
+			this.DeckType = type;
+		}
         
     }
-
-    
 
 	public enum TypeDeck
 	{
