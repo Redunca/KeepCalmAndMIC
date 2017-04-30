@@ -10,21 +10,28 @@ namespace KeepCalmAndMIC.BusinessLayer
     public class GameManagement : BaseManagement<GameManagement>
     {
         public GameManagement (IOwinContext owinContext) : base(owinContext) { }
-
-        public async Task UseActionCardOnADayAsync(int idGame, Card card, int weekNumber, int dayNumberOfWeek)
+        
+        public async Task UseActionCardOnADayAsync(int idGame, int cardId, int weekNumber, int dayNumberOfWeek)
         {
             Game game = await UnitOfWork.Games.GetById(idGame);
             Day day = game.Internship.WeeksOfTheInternship.ElementAt(weekNumber).DaysOfTheWeek.ElementAt(dayNumberOfWeek);
 
+            Card card = null;
+
+            Deck actionDeck = new Deck();
+
+            if (game.Decks.TryGetValue(TypeDeck.Action, out actionDeck))
+            {
+                card = actionDeck.CardList.First(c => c.Id == cardId);
+                // ici : Remettre une carte dans la main
+            }
+            else
+            {
+                // meeeeeerde !!!!
+            }
+
             await UnitOfWork.Days.SetActionOnADay(day.Id, card);
-        }
-
-        public async Task<int> CreateGame()
-        {
-            Game game = new Game();
             await UnitOfWork.SaveChangesAsync();
-
-            return game.Id;
         }
         
         public async Task SetEventOnADay(int idGame, Card card, int weekNumber, int dayNumberOfWeek)
@@ -81,11 +88,6 @@ namespace KeepCalmAndMIC.BusinessLayer
                 {
                     // meeeeeerde !!!!
                 }
-
-
-
-
-                
             }
             else
             {
@@ -95,17 +97,17 @@ namespace KeepCalmAndMIC.BusinessLayer
             return await internshipManagement.NextDayAsync(game.InternshipId);
         }
 
-        public async Task StartGame(int id)
+        public async Task StartGame(Game game)
         {
-            Game game = await UnitOfWork.Games.GetById(id);
             GameManagement gameManagement = OwinContext.Get<GameManagement>();
 
-            Deck eventDeck = new Deck();
             Deck actionDeck = new Deck();
+            Deck eventDeck = new Deck();
             Deck handDeck = new Deck();
 
-            game.Internship.CurrentWeek = 0;
-            game.Internship.CurrentDayOfTheWeek = 0;
+            Internship internship = new Internship();
+            internship.CurrentWeek = 0;
+            internship.CurrentDayOfTheWeek = 0;
 
             if (game.Decks.TryGetValue(TypeDeck.Action, out actionDeck))
             {

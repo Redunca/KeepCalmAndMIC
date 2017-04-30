@@ -73,12 +73,12 @@
         var idTolisten = "#" + idTolisten;
 
         $(idTolisten).on("click", function (e) {
-            var weekNumber = this.getAttribute("data-weekNumber");
+            var dayNumber = this.getAttribute("data-weekNumber");
             var weekZoom = $('#weekZoom');
 
             var url = "/Play/GetDay";
             $.get(url,
-                { weekNumber: weekNumber },
+                { dayNumber: dayNumber },
                 function (result) {
                     weekZoom.html(result);
                 });

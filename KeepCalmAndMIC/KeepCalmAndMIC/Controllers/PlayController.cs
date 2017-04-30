@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
+using KeepCalmAndMIC.BusinessLayer;
 
 namespace KeepCalmAndMIC.Controllers
 {
@@ -15,11 +16,29 @@ namespace KeepCalmAndMIC.Controllers
         public static int GameId { get; set; }
         public static int LookingWeek { get; set; }
         public static int LookingDay { get; set; }
-        
-        // GET: Play
-        public ActionResult Index()
+        /*
+        private ApplicationDbContext _appdb;
+
+        public PlayController(ApplicationDbContext appdb)
         {
+            _appdb = appdb;
+        }
+        */
+        // GET: Play
+        public async Task<ActionResult> Index()
+        {
+            GameManagement gameManagement = new GameManagement(HttpContext.GetOwinContext());
+
+            Deck gameaction = new Deck();
+            Deck gameevents = new Deck();
+            Deck gamehand = new Deck();
+
             Game game = new Game();
+            game.Decks.Add(TypeDeck.Action, gameaction);
+            game.Decks.Add(TypeDeck.Event, gameevents);
+            game.Decks.Add(TypeDeck.Hand, gamehand);
+            
+            await gameManagement.StartGame(game);
 
             PlayViewModel playViewModel = new PlayViewModel();
             playViewModel.IdGame = game.Id;
@@ -33,88 +52,100 @@ namespace KeepCalmAndMIC.Controllers
             playViewModel.statsOfWeekAndDayViewModel.Global = new Stats(); // ici : generate global stats
             playViewModel.statsOfWeekAndDayViewModel.Weekly = new Stats(); // ici : generate Weekly stats
             playViewModel.statsOfWeekAndDayViewModel.Daily = new Stats(); // ici : generate daily stats
-
+            
             playViewModel.cardsViewModel = new CardsViewModel();
-            playViewModel.cardsViewModel.Cards.Add(new Card(TypeCard.Action, "Débugging", "", 0, 20, 20, -10, 4, 2, 10)); // ici : Get cards from Deck Hand
+            Deck handDeck = new Deck();
+            if (game.Decks.TryGetValue(TypeDeck.Hand, out handDeck))
+            {
+                playViewModel.cardsViewModel.Cards = handDeck.CardList;
+            }
+            else
+            {
+                // meeeeeerde !!!!
+            }
 
+            await UnitOfWork.SaveChangesAsync();
 
-            GameId = game.Id;
+            GameId = game.Id; // ici : Check if it is the same id as in the db
             LookingWeek = 0;
             LookingDay = 0;
+            
+            return View("Index", playViewModel);
+        }
+
+        public async Task<ActionResult> SetActionCards(string cards)
+        {
+            GameManagement gameManagement = new GameManagement(HttpContext.GetOwinContext());
+
+            string[] cardId = cards.Split('_');
+
+            foreach (string id in cardId)
+            {
+                int idInt = Convert.ToInt32(id);
+                await gameManagement.UseActionCardOnADayAsync(GameId, idInt, LookingWeek, LookingDay);
+            }
+
+
+            Stats dailyStats = await gameManagement.NexDayAsync(GameId);
+            
+            Game game = await UnitOfWork.Games.GetById(GameId);
+
+            PlayViewModel playViewModel = new PlayViewModel();
+            playViewModel.IdGame = game.Id;
+
+            playViewModel.timeViewModel = new TimeViewModel();
+            playViewModel.timeViewModel.SelectedWeek = game.Internship.CurrentWeek;
+            playViewModel.timeViewModel.SelectedDay = game.Internship.CurrentDayOfTheWeek;
+
+            playViewModel.statsOfWeekAndDayViewModel = new StatsOfWeekAndDayViewModel();
+
+            playViewModel.statsOfWeekAndDayViewModel.Global = new Stats(); // ici : generate global stats
+            playViewModel.statsOfWeekAndDayViewModel.Weekly = new Stats(); // ici : generate Weekly stats
+            playViewModel.statsOfWeekAndDayViewModel.Daily = new Stats(); // ici : generate daily stats
+
+            playViewModel.cardsViewModel = new CardsViewModel();
+            Deck handDeck = new Deck();
+            if (game.Decks.TryGetValue(TypeDeck.Hand, out handDeck))
+            {
+                playViewModel.cardsViewModel.Cards = handDeck.CardList;
+            }
+            else
+            {
+                // meeeeeerde !!!!
+            }
+            
+            await UnitOfWork.SaveChangesAsync();
 
             return View("Index", playViewModel);
         }
 
-
-        /*
         public ActionResult GetWeek(int weekNumber)
         {
-            //return week
-            var ratings = UnitOfWork.Ratings.FindAllByServiceId(idService);
+            LookingWeek = weekNumber;
 
-            return PartialView("../Account/_UserComments", ratings);
+            StatsOfWeekAndDayViewModel statsOfWeekAndDayViewModel = new StatsOfWeekAndDayViewModel();
 
+            /* générer les stats sur base de (LookingWeek, LookingDay) */
+            statsOfWeekAndDayViewModel.Global = new Stats(); // ici : generate global stats
+            statsOfWeekAndDayViewModel.Weekly = new Stats(); // ici : generate Weekly stats
+            statsOfWeekAndDayViewModel.Daily = new Stats(); // ici : generate daily stats
+            
+            return PartialView("_StatsOfWeekAndDay", statsOfWeekAndDayViewModel);
         }
 
-        public ActionResult GetDay(int weekNumber)
+        public ActionResult GetDay(int dayNumber)
         {
-            //return week
-            var ratings = UnitOfWork.Ratings.FindAllByServiceId(idService);
+            LookingDay = dayNumber;
 
-            return PartialView("../Account/_UserComments", ratings);
+            StatsOfWeekAndDayViewModel statsOfWeekAndDayViewModel = new StatsOfWeekAndDayViewModel();
+
+            /* générer les stats sur base de (LookingWeek, LookingDay) */
+            statsOfWeekAndDayViewModel.Global = new Stats(); // ici : generate global stats
+            statsOfWeekAndDayViewModel.Weekly = new Stats(); // ici : generate Weekly stats
+            statsOfWeekAndDayViewModel.Daily = new Stats(); // ici : generate daily stats
+
+            return PartialView("_StatsOfWeekAndDay", statsOfWeekAndDayViewModel);
 
         }
-
-
-        /Play/GetWeek
-        */
-
-
-
-        /*
-
-        public ActionResult SelectDayOfWeek(DayOfWeek? day)
-        {
-            Weeks = new List<WeekViewModel>();
-            for (int i = 1; i <= 15; i++)
-            {
-                Weeks.Add(new WeekViewModel()
-                {
-                    WeekNumber = i,
-                    IsPassed = (i < 6)
-                });
-            }
-            ViewBag.ProgressViewModel = new ProgressViewModel();
-            ViewBag.TimeViewModel = new TimeViewModel();
-            ViewBag.CardsViewModel = CardsViewModel;
-            if (ViewBag.TimeViewModel == null)
-            {
-                ViewBag.TimeViewModel = new TimeViewModel();
-            }
-            if (day.HasValue)
-            {
-                ViewBag.TimeViewModel.SelectedDay = day.Value;
-                SelectedDay = day.Value;
-                if (day.Value == DayOfWeek.Saturday)
-                {
-                    ViewBag.TimeViewModel.SelectedDay = DayOfWeek.Sunday;
-                }
-            }
-            else
-            {
-                ViewBag.TimeViewModel.SelectedDay = DayOfWeek.Sunday;
-            }
-            return View("Index");
-        }
-        public ActionResult ToggleCardSelected(Card card)
-        {
-            var tempCard = CardsViewModel.Cards.Find(c => c.Id == card.Id);
-            tempCard.IsSelected = !tempCard.IsSelected;
-            return View("Index");
-        }
-        */
-
-        /*
-        */
     }
 }

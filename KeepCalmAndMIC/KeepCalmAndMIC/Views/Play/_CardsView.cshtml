@@ -57,15 +57,36 @@
         listenCardForSelect(element);
     });
 
+    $("#SelectedCards").on("click", function (e) {
+
+        var ActionIdToSend = "";
+
+        arrayBtn.forEach(function (element) {
+            var elementId = "#" + element;
+            if ($(elementId).hasClass("selected")) {
+                if (ActionIdToSend == "") {
+                    ActionIdToSend = element;
+                }
+                else {
+                    ActionIdToSend += '_' + element;
+                }
+
+                ActionIdToSend  .push(element);
+            }
+        });
+        if (ActionIdToSend != "") {
+            window.location = '/Player/SetActionCards?cards=' + ActionIdToSend;
+        }
+        else {
+            alert("Aucune carte sélectionnée!");
+        }
+    });
+
     /****************************************************************************************************
     *                                       Library
     ****************************************************************************************************/
-    function listenCardForSelect(idToListen) {
-        
+    function listenCardForSelect(idToListen) {  
         idToListen = "#" + idToListen;
-        //
-
-
 
         $(idToListen).on("click", function (e) {
 
