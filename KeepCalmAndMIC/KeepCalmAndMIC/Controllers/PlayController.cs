@@ -54,7 +54,7 @@ namespace KeepCalmAndMIC.Controllers
 			Deck handDeck = null;
 			foreach (Deck deck in game.Decks)
 			{
-				if (deck.DeckType.Equals(TypeDeck.Action))
+				if (deck.DeckType.Equals(TypeDeck.Hand )) //TypeDeck.Action
 				{
 					handDeck = deck;
 				}
@@ -140,8 +140,8 @@ namespace KeepCalmAndMIC.Controllers
 			Deck handDeck = null;
 			foreach (Deck deck in game.Decks)
 			{
-				if (deck.DeckType.Equals(TypeDeck.Action))
-				{
+                if (deck.DeckType.Equals(TypeDeck.Hand)) //TypeDeck.Action
+                {
 					handDeck = deck;
 				}
 			}
